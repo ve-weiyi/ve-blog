@@ -1,10 +1,5 @@
 ## 博客介绍
 
-<p align=center>
-  <a href="https://www.talkxj.com">
-    <img src="https://static.talkxj.com/articles/4a8ca439f6a4cce8316f9a885c632cee.jpg" alt="风丶宇的个人博客" style="border-radius: 50%">
-  </a>
-</p>
 
 <p align=center>
    基于Springboot + Vue 开发的前后端分离博客
@@ -28,21 +23,12 @@
 
 ## 在线地址
 
-**项目链接：** [www.talkxj.com](https://www.talkxj.com)
+**项目链接：** [www.ve77.cn/blog](https://www.ve77.cn/blog)
 
-**后台链接：** [admin.talkxj.com](https://admin.talkxj.com)
+**后台链接：** [www.ve77.cn/admin](https://www.ve77.cn/admin)
 
 测试账号：test@qq.com，密码：1234567，可登入后台查看。
 
-**Github地址：** [https://github.com/X1192176811/blog](https://github.com/X1192176811/blog)
-
-**Gitee地址：** [https://gitee.com/feng_meiyu/blog](https://gitee.com/feng_meiyu/blog)
-
-**接口文档地址：** [https://www.talkxj.com/api/doc.html](https://www.talkxj.com/api/doc.html)
-
-您的star是我坚持的动力，感谢大家的支持，欢迎提交pr共同改进项目。
-
-**近期遭遇DDOS攻击，可能造成访问速度变慢**
 
 ## 目录结构
 
@@ -56,7 +42,7 @@ SQL文件位于根目录下的blog-mysql8.sql，需要MYSQL8以上版本。
 
 当你克隆项目到本地后可使用邮箱账号：admin@qq.com，密码：1234567 进行登录，也可自行注册账号并将其修改为admin角色。
 
-本地访问接口文档地址：[http://127.0.0.1:8080/doc.html](http://127.0.0.1:8080/doc.html)
+本地访问接口文档地址：[http://127.0.0.1:8088/doc.html](http://127.0.0.1:8088/doc.html)
 
 **ps：请先运行后端项目，再启动前端项目，前端项目配置由后端动态加载。** 
 
@@ -141,27 +127,20 @@ blog-springboot
 
 ## 项目截图
 
-![QQ截图20210320171133.png](https://static.talkxj.com/articles/1616231666692.png)
-
-![QQ截图20210320235519 1.jpg](https://static.talkxj.com/articles/1616255938601.jpg)
-
-![QQ截图20210320171338.png](https://static.talkxj.com/articles/1616231705373.png)
-
-![QQ截图20210320171401.png](https://static.talkxj.com/articles/1616231714148.png)
 
 ## 快速开始
 
 ### 项目环境安装
 
-详见文章[Docker安装运行环境](https://www.talkxj.com/articles/2)
+详见文章[Docker安装运行环境](https://www.ve77.cn/articles/2)
 
 ### 项目配置
 
-详见文章[项目配置教程](https://www.talkxj.com/articles/3)
+详见文章[项目配置教程](https://www.ve77.cn/articles/3)
 
 ### Docker部署项目
 
-详见文章[项目部署教程](https://www.talkxj.com/articles/13)
+详见文章[项目部署教程](https://www.ve77.cn/articles/13)
 
 ## 注意事项
 
