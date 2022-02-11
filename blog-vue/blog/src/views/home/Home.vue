@@ -341,8 +341,8 @@ export default {
         Notification({
           title: '通知',
           //teal蓝绿色
-          message: h('i', { style: 'color: teal' }, '由于前端适配问题，想看到完整功能请使用电脑端网页打开本地址。' +
-              'QQ和微博登录功能正在向代理商申请开发者权限，暂时无法使用，敬请谅解！'),
+          message: h('i', { style: 'color: teal' }, '2022-02-11 由于页面适配问题，使用完整功能请使用电脑浏览器打开本地址。' +
+              '已接入QQ和微博授权登录功能，快来留下你的评论吧！'),
           duration: 0
         })
       }

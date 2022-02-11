@@ -22,8 +22,7 @@ export default {
       // 拿到openId，accessToken传入后台
       if (QC.Login.check()) {
         QC.Login.getMe(function(openId, accessToken) {
-          that.axios
-            .post("/api/users/oauth/qq", {
+          that.axios.post("/api/users/oauth/qq", {
               openId: openId,
               accessToken: accessToken
             })
