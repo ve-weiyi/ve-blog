@@ -101,7 +101,7 @@ upload:
 
   oss:
 #    没钱买https
-    url: https://static.ve77.cn/
+    url: https://static.ve77.cn/blog/
     endpoint: oss-cn-beijing.aliyuncs.com
     bucketName: veport
     accessKeyId: LTAI5tP7D8BmkL9py6zunshJ
