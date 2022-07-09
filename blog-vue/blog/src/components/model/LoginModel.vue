@@ -7,30 +7,30 @@
       <div class="login-wrapper">
         <!-- 用户名 -->
         <v-text-field
-            v-model="username"
-            label="邮箱号"
-            placeholder="请输入您的邮箱号"
-            clearable
-            @keyup.enter="login"
+          v-model="username"
+          label="邮箱号"
+          placeholder="请输入您的邮箱号"
+          clearable
+          @keyup.enter="login"
         />
         <!-- 密码 -->
         <v-text-field
-            v-model="password"
-            class="mt-7"
-            label="密码"
-            placeholder="请输入您的密码"
-            @keyup.enter="login"
-            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show ? 'text' : 'password'"
-            @click:append="show = !show"
+          v-model="password"
+          class="mt-7"
+          label="密码"
+          placeholder="请输入您的密码"
+          @keyup.enter="login"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="show ? 'text' : 'password'"
+          @click:append="show = !show"
         />
         <!-- 按钮 -->
         <v-btn
-            class="mt-7"
-            block
-            color="blue"
-            style="color:#fff"
-            @click="login"
+          class="mt-7"
+          block
+          color="blue"
+          style="color:#fff"
+          @click="login"
         >
           登录
         </v-btn>
@@ -44,17 +44,17 @@
           <div class="social-login-wrapper">
             <!-- 微博登录 -->
             <a
-                v-if="showLogin('weibo')"
-                class="mr-3 iconfont iconweibo"
-                style="color:#e05244"
-                @click="weiboLogin"
+              v-if="showLogin('weibo')"
+              class="mr-3 iconfont iconweibo"
+              style="color:#e05244"
+              @click="weiboLogin"
             />
             <!-- qq登录 -->
             <a
-                v-if="showLogin('qq')"
-                class="iconfont iconqq"
-                style="color:#00AAEE"
-                @click="qqLogin"
+              v-if="showLogin('qq')"
+              class="iconfont iconqq"
+              style="color:#00AAEE"
+              @click="qqLogin"
             />
           </div>
         </div>
@@ -117,10 +117,9 @@ export default {
         return false;
       }
       const that = this;
-      // 先在index.html引入相应js：
       // eslint-disable-next-line no-undef
       var captcha = new TencentCaptcha(this.config.TENCENT_CAPTCHA, function(
-          res
+        res
       ) {
         if (res.ret === 0) {
           //发送登录请求
@@ -146,10 +145,11 @@ export default {
     qqLogin() {
       //保留当前路径
       this.$store.commit("saveLoginUrl", this.$route.path);
-      // this.$toast({ type: "error", message: "QQ登录功能仍在申请中...此功能尚未开放。" });
-      if (navigator.userAgent.match(
+      if (
+        navigator.userAgent.match(
           /(iPhone|iPod|Android|ios|iOS|iPad|Backerry|WebOS|Symbian|Windows Phone|Phone)/i
-        )) {
+        )
+      ) {
         // eslint-disable-next-line no-undef
         QC.Login.showPopup({
           appId: this.config.QQ_APP_ID,
@@ -168,7 +168,6 @@ export default {
     weiboLogin() {
       //保留当前路径
       this.$store.commit("saveLoginUrl", this.$route.path);
-      //this.$toast({ type: "error", message: "微博登录功能仍在申请中...此功能尚未开放。" });
       window.open(
         "https://api.weibo.com/oauth2/authorize?client_id=" +
           this.config.WEIBO_APP_ID +

@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/home", redirect: "/" },
   {
     path: "/",
     component: resolve => require(["../views/home/Home.vue"], resolve)
@@ -105,12 +104,10 @@ const routes = [
   }
 ];
 
-
 const router = new VueRouter({
   mode: "history",
-  base: "/blog/",
+  base: process.env.BASE_URL,
   routes
 });
 
 export default router;
-

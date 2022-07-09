@@ -22,4 +22,4 @@ yarn-error.log*
 *.sw?
 
 # 项目排除路径
-/blog-springboot/target/
+/blog-springboot-complete/target/

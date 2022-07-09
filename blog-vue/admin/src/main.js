@@ -25,7 +25,7 @@ import VueCalendarHeatmap from "vue-calendar-heatmap";
 import dayjs from "dayjs";
 import tagCloud from "./components/tag-cloud";
 
-
+//携带cookie
 axios.defaults.withCredentials=true;
 
 Vue.prototype.config = config;

@@ -247,9 +247,7 @@ export default {
       wordIndex: 0,
       currentProgress: "0%",
       musicList: [],
-      // 167876 有何不可
       myMusicList: [], //存储在本地   可以开始判断有没有 让用户一开始就听这个列表
-      myLoveMusic: [167876,167873],// 有何不可，多余的解释 167873.海阔天空 347230
       thisMusicIndex: 1,
       disActive: false,
       listIsDis: false,
@@ -279,12 +277,7 @@ export default {
     this.Player();
   },
   created() {
-    this._getMusicType(3778678);
-    this.myLoveMusic.forEach(songid => {
-          console.log("-------->" + songid);
-          this.ListAddSongID(songid);
-        }
-    )
+    this._getMusicType(3779629);
     this.DisAuthorInfo(); //禁删~感谢配合
   },
   computed: {
@@ -323,21 +316,6 @@ export default {
         this.musicAlertState = false;
         this.musicAlertVal = "";
       }, 2000);
-    },
-    ListAddSongID(songId) {
-      getMusicInfo(songId).then(res => {
-        console.log("-------->" + res);
-        this.musicSearchVal = "";
-        if (this.myMusicList.length == 0) {
-          this.myMusicList = [res.data.songs[0]];
-          this._getMusicType(-1);
-          //第一次搜索直接播放
-        } else {
-          this.myMusicList.push(res.data.songs[0]);
-          //提示已经添加进去
-        }
-        this.MusicAlert("添加成功");
-      });
     },
     ListAdd(obj) {
       getMusicInfo(obj.id).then(res => {

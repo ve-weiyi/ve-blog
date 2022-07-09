@@ -374,6 +374,7 @@ export default {
         html: true,
         linkify: true,
         typographer: true,
+        breaks: true,
         highlight: function(str, lang) {
           // 当前时间加随机数生成唯一的id标识
           var d = new Date().getTime();
@@ -417,7 +418,7 @@ export default {
             )}</textarea>`;
           }
         }
-      });
+      }).use(require("markdown-it-mark"));
       // 将markdown替换为html标签
       article.articleContent = md.render(article.articleContent);
       this.article = article;

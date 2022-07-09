@@ -229,7 +229,6 @@
 
 <script>
 import Swiper from "../../components/Swiper.vue";
-import { Notification } from "element-ui";
 import EasyTyper from "easy-typer-js";
 export default {
   components: {
@@ -237,7 +236,6 @@ export default {
   },
   created() {
     this.init();
-    this.message()
     this.listHomeTalks();
     this.timer = setInterval(this.runTime, 1000);
   },
@@ -328,26 +326,7 @@ export default {
             $state.complete();
           }
         });
-    },
-    message () {
-      const messageFlag = sessionStorage.getItem('messageFlag')
-      if (messageFlag == null) {
-      //   Notification({
-      //     title: '消息',
-      //     message: this.blogInfo.websiteConfig.websiteNotice,
-      //     duration: 0
-      //   })
-        const h = this.$createElement
-        Notification({
-          title: '通知',
-          //teal蓝绿色
-          message: h('i', { style: 'color: teal' }, '2022-02-11 由于页面适配问题，使用完整功能请使用电脑浏览器打开本地址。' +
-              '已接入QQ和微博授权登录功能，快来留下你的评论吧！'),
-          duration: 0
-        })
-      }
-      sessionStorage.setItem('messageFlag', 'true')
-    },
+    }
   },
   computed: {
     isRight() {
@@ -380,6 +359,7 @@ export default {
 </script>
 
 <style lang="stylus">
+
 body {
   background: url('../../assets/images/bg.png');
   cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur),default;

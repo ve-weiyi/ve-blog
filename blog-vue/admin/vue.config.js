@@ -1,18 +1,16 @@
 module.exports = {
-  //productionSourceMap: false,
+  productionSourceMap: false,
   devServer: {
-    host: "localhost",
     port: 8082,
     proxy: {
       "/api": {
         //wbsocket
         ws: false,
         //  目标地址
-        target: "https://localhost:8088",
-        //  发送请求头host会被设置target
+        target: "https://ve77.cn:8088",
         changeOrigin: true,
-        //  不重写请求地址
-        pathWewrite: {
+        //  重写请求地址，不携带cookie了
+        pathRewrite: {
           "^/api": "/api"
         },
         logLevel: "debug" // 打印代理以后的地址
@@ -23,6 +21,7 @@ module.exports = {
   publicPath: "/admin",
   outputDir: "admin",
   assetsDir: "static",
+
   chainWebpack: config => {
     config.resolve.alias.set("@", resolve("src"));
   }
