@@ -6,7 +6,7 @@ import com.ve.locker.dto.CommentDTO;
 import com.ve.locker.vo.*;
 import com.ve.locker.dto.ReplyDTO;
 import com.ve.locker.service.CommentService;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

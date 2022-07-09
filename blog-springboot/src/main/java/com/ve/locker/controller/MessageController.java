@@ -4,7 +4,7 @@ package com.ve.locker.controller;
 import com.ve.locker.annotation.OptLog;
 import com.ve.locker.dto.MessageBackDTO;
 import com.ve.locker.vo.*;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.dto.MessageDTO;
 import com.ve.locker.service.MessageService;
 import com.ve.locker.constant.OptTypeConst;

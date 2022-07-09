@@ -25,6 +25,9 @@ import VueCalendarHeatmap from "vue-calendar-heatmap";
 import dayjs from "dayjs";
 import tagCloud from "./components/tag-cloud";
 
+
+axios.defaults.withCredentials=true;
+
 Vue.prototype.config = config;
 Vue.use(mavonEditor);
 Vue.use(tagCloud);

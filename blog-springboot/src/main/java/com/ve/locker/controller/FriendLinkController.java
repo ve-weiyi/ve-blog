@@ -8,7 +8,7 @@ import com.ve.locker.vo.ConditionVO;
 import com.ve.locker.vo.FriendLinkVO;
 import com.ve.locker.vo.PageResult;
 import com.ve.locker.service.FriendLinkService;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.constant.OptTypeConst;
 import com.ve.locker.vo.Result;
 import io.swagger.annotations.Api;

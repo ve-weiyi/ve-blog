@@ -4,7 +4,7 @@ import com.ve.locker.dto.PhotoBackDTO;
 import com.ve.locker.dto.PhotoDTO;
 import com.ve.locker.entity.Photo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.vo.*;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.ve.locker.dao;
 
-import com.minzheng.blog.dto.*;
+
 import com.ve.locker.dto.*;
 import com.ve.locker.entity.Article;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

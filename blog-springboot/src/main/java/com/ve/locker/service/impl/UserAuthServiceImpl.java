@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ve.locker.constant.CommonConst;
 import com.ve.locker.dao.UserInfoDao;
 import com.ve.locker.dao.UserRoleDao;
-import com.minzheng.blog.dto.*;
+
 import com.ve.locker.entity.UserInfo;
 import com.ve.locker.entity.UserAuth;
 import com.ve.locker.dao.UserAuthDao;
@@ -23,7 +23,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ve.locker.strategy.context.SocialLoginStrategyContext;
 import com.ve.locker.util.PageUtils;
 import com.ve.locker.util.UserUtils;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.dto.EmailDTO;
 import com.ve.locker.dto.UserAreaDTO;
 import com.ve.locker.dto.UserBackDTO;

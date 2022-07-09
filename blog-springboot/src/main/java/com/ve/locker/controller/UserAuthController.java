@@ -6,7 +6,7 @@ import com.ve.locker.dto.UserInfoDTO;
 import com.ve.locker.vo.*;
 import com.ve.locker.dto.UserBackDTO;
 import com.ve.locker.service.UserAuthService;
-import com.minzheng.blog.vo.*;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

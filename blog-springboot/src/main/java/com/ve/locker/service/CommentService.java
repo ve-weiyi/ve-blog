@@ -2,7 +2,6 @@ package com.ve.locker.service;
 
 import com.ve.locker.dto.CommentBackDTO;
 import com.ve.locker.dto.CommentDTO;
-import com.minzheng.blog.vo.*;
 import com.ve.locker.dto.ReplyDTO;
 import com.ve.locker.entity.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;

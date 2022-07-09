@@ -1,6 +1,6 @@
 package com.ve.locker.config;
 
-import com.minzheng.blog.handler.*;
+
 import com.ve.locker.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -84,9 +84,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailHandler)
                 .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessHandler(logoutSuccessHandler);
+                .logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
+
         // 配置路由权限信息
         http.authorizeRequests()
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
@@ -107,6 +106,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler)
                 .and()
                 .sessionManagement()
+                //最大session数量
                 .maximumSessions(20)
                 .sessionRegistry(sessionRegistry());
     }

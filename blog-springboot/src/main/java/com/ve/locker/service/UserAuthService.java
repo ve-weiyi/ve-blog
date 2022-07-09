@@ -2,7 +2,7 @@ package com.ve.locker.service;
 
 import com.ve.locker.dto.UserAreaDTO;
 import com.ve.locker.dto.UserInfoDTO;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.dto.UserBackDTO;
 import com.ve.locker.entity.UserAuth;
 import com.baomidou.mybatisplus.extension.service.IService;

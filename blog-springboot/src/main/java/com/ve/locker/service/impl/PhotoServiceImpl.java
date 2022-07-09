@@ -15,7 +15,7 @@ import com.ve.locker.service.PhotoAlbumService;
 import com.ve.locker.service.PhotoService;
 import com.ve.locker.util.BeanCopyUtils;
 import com.ve.locker.util.PageUtils;
-import com.minzheng.blog.vo.*;
+
 import com.ve.locker.enums.PhotoAlbumStatusEnum;
 import com.ve.locker.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
