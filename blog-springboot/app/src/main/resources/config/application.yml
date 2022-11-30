@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: pro,auth,msg,upload
+    active: dev,auth,msg,upload
 
 author:
   name: ve

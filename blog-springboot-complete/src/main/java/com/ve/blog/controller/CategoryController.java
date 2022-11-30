@@ -10,6 +10,7 @@ import com.ve.blog.service.CategoryService;
 import com.ve.blog.vo.CategoryVO;
 import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.vo.Result;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.SAVE_OR_UPDATE;
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
 
 
 /**
@@ -37,7 +35,7 @@ public class CategoryController {
     /**
      * 查看分类列表
      *
-     * @return {@link Result <CategoryDTO>} 分类列表
+     * @return {@link Result<CategoryDTO>} 分类列表
      */
     @ApiOperation(value = "查看分类列表")
     @GetMapping("/categories")
@@ -75,7 +73,7 @@ public class CategoryController {
      * @param categoryVO 分类信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "添加或修改分类")
     @PostMapping("/admin/categories")
     public Result<?> saveOrUpdateCategory(@Valid @RequestBody CategoryVO categoryVO) {
@@ -89,7 +87,7 @@ public class CategoryController {
      * @param categoryIdList 分类id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除分类")
     @DeleteMapping("/admin/categories")
     public Result<?> deleteCategories(@RequestBody List<Integer> categoryIdList) {

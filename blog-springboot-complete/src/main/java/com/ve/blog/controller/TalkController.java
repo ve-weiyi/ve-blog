@@ -36,7 +36,7 @@ public class TalkController {
     /**
      * 查看首页说说
      *
-     * @return {@link Result <String>}
+     * @return {@link Result<String>}
      */
     @ApiOperation(value = "查看首页说说")
     @GetMapping("/home/talks")

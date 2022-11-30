@@ -18,6 +18,7 @@ import com.ve.blog.service.impl.UserDetailsServiceImpl;
 import com.ve.blog.strategy.SocialLoginStrategy;
 import com.ve.blog.util.BeanCopyUtils;
 import com.ve.blog.util.IpUtils;
+import com.ve.blog.constant.CommonConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +30,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
-import static com.ve.blog.constant.CommonConst.TRUE;
 import static com.ve.blog.enums.ZoneEnum.SHANGHAI;
 
 
@@ -71,7 +71,7 @@ public abstract class AbstractSocialLoginStrategyImpl implements SocialLoginStra
             userDetailDTO = saveUserDetail(socialToken, ipAddress, ipSource);
         }
         // 判断账号是否禁用
-        if (userDetailDTO.getIsDisable().equals(TRUE)) {
+        if (userDetailDTO.getIsDisable().equals(CommonConst.TRUE)) {
             throw new BizException("账号已被禁用");
         }
         // 将登录信息放入springSecurity管理

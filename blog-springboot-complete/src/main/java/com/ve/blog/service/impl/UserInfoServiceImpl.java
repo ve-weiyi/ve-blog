@@ -20,6 +20,7 @@ import com.ve.blog.service.UserRoleService;
 import com.ve.blog.util.UserUtils;
 import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.constant.RedisPrefixConst;
+import com.ve.blog.util.PageUtils;
 import com.ve.blog.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionInformation;
@@ -32,9 +33,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.ve.blog.util.PageUtils.*;
-import static com.ve.blog.util.PageUtils.getLimitCurrent;
 
 
 /**
@@ -139,8 +137,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
                 .sorted(Comparator.comparing(UserOnlineDTO::getLastLoginTime).reversed())
                 .collect(Collectors.toList());
         // 执行分页
-        int fromIndex = getLimitCurrent().intValue();
-        int size = getSize().intValue();
+        int fromIndex = PageUtils.getLimitCurrent().intValue();
+        int size = PageUtils.getSize().intValue();
         int toIndex = userOnlineDTOList.size() - fromIndex > size ? fromIndex + size : userOnlineDTOList.size();
         List<UserOnlineDTO> userOnlineList = userOnlineDTOList.subList(fromIndex, toIndex);
         return new PageResult<>(userOnlineList, userOnlineDTOList.size());

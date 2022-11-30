@@ -11,6 +11,7 @@ import com.ve.blog.service.RedisService;
 import com.ve.blog.service.UniqueViewService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ve.blog.constant.RedisPrefixConst;
+import com.ve.blog.enums.ZoneEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import static com.ve.blog.enums.ZoneEnum.SHANGHAI;
 
 
 /**
@@ -51,7 +50,7 @@ public class UniqueViewServiceImpl extends ServiceImpl<UniqueViewDao, UniqueView
         Long count = redisService.sSize(RedisPrefixConst.UNIQUE_VISITOR);
         // 获取昨天日期插入数据
         UniqueView uniqueView = UniqueView.builder()
-                .createTime(LocalDateTimeUtil.offset(LocalDateTime.now(ZoneId.of(SHANGHAI.getZone())), -1, ChronoUnit.DAYS))
+                .createTime(LocalDateTimeUtil.offset(LocalDateTime.now(ZoneId.of(ZoneEnum.SHANGHAI.getZone())), -1, ChronoUnit.DAYS))
                 .viewsCount(Optional.of(count.intValue()).orElse(0))
                 .build();
         uniqueViewDao.insert(uniqueView);

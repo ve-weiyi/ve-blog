@@ -6,21 +6,20 @@ import com.ve.blog.dto.*;
 import com.ve.blog.dto.*;
 import com.ve.blog.enums.FilePathEnum;
 import com.ve.blog.service.ArticleService;
+import com.ve.blog.strategy.context.ArticleImportStrategyContext;
 import com.ve.blog.strategy.context.UploadStrategyContext;
 import com.ve.blog.vo.*;
+import com.ve.blog.constant.OptTypeConst;
 import com.ve.blog.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.*;
-
-import static com.ve.blog.constant.OptTypeConst.*;
+import java.util.List;
 
 /**
  * 文章控制器
@@ -35,6 +34,8 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private UploadStrategyContext uploadStrategyContext;
+    @Autowired
+    private ArticleImportStrategyContext articleImportStrategyContext;
 
     /**
      * 查看文章归档
@@ -76,7 +77,7 @@ public class ArticleController {
      * @param articleVO 文章信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "添加或修改文章")
     @PostMapping("/admin/articles")
     public Result<?> saveOrUpdateArticle(@Valid @RequestBody ArticleVO articleVO) {
@@ -90,7 +91,7 @@ public class ArticleController {
      * @param articleTopVO 文章置顶信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "修改文章置顶")
     @PutMapping("/admin/articles/top")
     public Result<?> updateArticleTop(@Valid @RequestBody ArticleTopVO articleTopVO) {
@@ -104,7 +105,7 @@ public class ArticleController {
      * @param deleteVO 逻辑删除信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "恢复或删除文章")
     @PutMapping("/admin/articles")
     public Result<?> updateArticleDelete(@Valid @RequestBody DeleteVO deleteVO) {
@@ -131,7 +132,7 @@ public class ArticleController {
      * @param articleIdList 文章id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "物理删除文章")
     @DeleteMapping("/admin/articles")
     public Result<?> deleteArticles(@RequestBody List<Integer> articleIdList) {
@@ -156,7 +157,7 @@ public class ArticleController {
      * 根据id查看文章
      *
      * @param articleId 文章id
-     * @return {@link Result< ArticleDTO >} 文章信息
+     * @return {@link Result<ArticleDTO>} 文章信息
      */
     @ApiOperation(value = "根据id查看文章")
     @ApiImplicitParam(name = "articleId", value = "文章id", required = true, dataType = "Integer")
@@ -181,7 +182,7 @@ public class ArticleController {
      * 搜索文章
      *
      * @param condition 条件
-     * @return {@link Result<ArticleSearchDTO>} 文章列表
+     * @return {@link Result< ArticleSearchDTO >} 文章列表
      */
     @ApiOperation(value = "搜索文章")
     @GetMapping("/articles/search")
@@ -203,5 +204,30 @@ public class ArticleController {
         return Result.ok();
     }
 
-}
+    /**
+     * 导出文章
+     *
+     * @param articleIdList 文章id列表
+     * @return {@link List<String>} 文件url列表
+     */
+    @ApiOperation(value = "导出文章")
+    @ApiImplicitParam(name = "articleIdList", value = "文章id", required = true, dataType = "List<Integer>")
+    @PostMapping("/admin/articles/export")
+    public Result<List<String>> exportArticles(@RequestBody List<Integer> articleIdList) {
+        return Result.ok(articleService.exportArticles(articleIdList));
+    }
 
+    /**
+     * 导入文章
+     *
+     * @param file 文件
+     * @param type 文章类型
+     * @return {@link Result<>}
+     */
+    @ApiOperation(value = "导入文章")
+    @PostMapping("/admin/articles/import")
+    public Result<?> importArticles(MultipartFile file, @RequestParam(required = false) String type) {
+        articleImportStrategyContext.importArticles(file, type);
+        return Result.ok();
+    }
+}

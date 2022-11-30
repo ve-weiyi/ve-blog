@@ -29,7 +29,7 @@ public interface PhotoAlbumService extends IService<PhotoAlbum> {
      * 查看后台相册列表
      *
      * @param condition 条件
-     * @return {@link PageResult <PhotoAlbumBackDTO>} 相册列表
+     * @return {@link PageResult<PhotoAlbumBackDTO>} 相册列表
      */
     PageResult<PhotoAlbumBackDTO> listPhotoAlbumBacks(ConditionVO condition);
 

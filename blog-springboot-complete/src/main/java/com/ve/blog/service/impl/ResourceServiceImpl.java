@@ -39,7 +39,6 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceDao, Resource> impl
     private FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSource;
 
 
-
     @Override
     public void saveOrUpdateResource(ResourceVO resourceVO) {
         // 更新资源信息

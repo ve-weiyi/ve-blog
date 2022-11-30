@@ -8,7 +8,6 @@ import com.ve.blog.dao.ArticleDao;
 import com.ve.blog.dao.TalkDao;
 import com.ve.blog.dao.UserInfoDao;
 import com.ve.blog.dto.*;
-import com.ve.blog.dto.*;
 import com.ve.blog.entity.Comment;
 import com.ve.blog.dao.CommentDao;
 import com.ve.blog.service.BlogInfoService;
@@ -22,6 +21,8 @@ import com.ve.blog.vo.*;
 import com.ve.blog.constant.CommonConst;
 import com.ve.blog.constant.MQPrefixConst;
 import com.ve.blog.constant.RedisPrefixConst;
+import com.ve.blog.dto.*;
+import com.ve.blog.enums.CommentTypeEnum;
 import com.ve.blog.vo.*;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -33,8 +34,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-
-import static com.ve.blog.enums.CommentTypeEnum.*;
 
 /**
  * 评论服务
@@ -193,7 +192,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         if (Objects.nonNull(comment.getReplyUserId())) {
             userId = comment.getReplyUserId();
         } else {
-            switch (Objects.requireNonNull(getCommentEnum(comment.getType()))) {
+            switch (Objects.requireNonNull(CommentTypeEnum.getCommentEnum(comment.getType()))) {
                 case ARTICLE:
                     userId = articleDao.selectById(comment.getTopicId()).getUserId();
                     break;
@@ -213,7 +212,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
                 emailDTO.setEmail(email);
                 emailDTO.setSubject("评论提醒");
                 // 获取评论路径
-                String url = websiteUrl + getCommentPath(comment.getType()) + id;
+                String url = websiteUrl + CommentTypeEnum.getCommentPath(comment.getType()) + id;
                 emailDTO.setContent("您收到了一条新的回复，请前往" + url + "\n页面查看");
             } else {
                 // 管理员审核提醒

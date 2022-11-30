@@ -4,11 +4,12 @@ package com.ve.blog.controller;
 import com.ve.blog.annotation.OptLog;
 import com.ve.blog.dto.FriendLinkBackDTO;
 import com.ve.blog.dto.FriendLinkDTO;
+import com.ve.blog.vo.ConditionVO;
+import com.ve.blog.vo.FriendLinkVO;
 import com.ve.blog.vo.PageResult;
 import com.ve.blog.service.FriendLinkService;
 import com.ve.blog.vo.*;
-import com.ve.blog.vo.ConditionVO;
-import com.ve.blog.vo.FriendLinkVO;
+import com.ve.blog.constant.OptTypeConst;
 import com.ve.blog.vo.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,9 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.SAVE_OR_UPDATE;
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
 
 /**
  * 友链控制器
@@ -62,7 +60,7 @@ public class FriendLinkController {
      * @param friendLinkVO 友链信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "保存或修改友链")
     @PostMapping("/admin/links")
     public Result<?> saveOrUpdateFriendLink(@Valid @RequestBody FriendLinkVO friendLinkVO) {
@@ -76,7 +74,7 @@ public class FriendLinkController {
      * @param linkIdList 友链id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除友链")
     @DeleteMapping("/admin/links")
     public Result<?> deleteFriendLink(@RequestBody List<Integer> linkIdList) {

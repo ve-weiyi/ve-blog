@@ -18,7 +18,6 @@ import java.util.List;
  */
 public interface ResourceService extends IService<Resource> {
 
-
     /**
      * 添加或修改资源
      *

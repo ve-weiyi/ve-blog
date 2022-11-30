@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.ve.blog.constant.SocialLoginConst.*;
 import static com.ve.blog.enums.StatusCodeEnum.QQ_LOGIN_ERROR;
 
 /**
@@ -52,9 +51,9 @@ public class QQLoginStrategyImpl extends AbstractSocialLoginStrategyImpl {
     public SocialUserInfoDTO getSocialUserInfo(SocialTokenDTO socialTokenDTO) {
         // 定义请求参数
         Map<String, String> formData = new HashMap<>(3);
-        formData.put(QQ_OPEN_ID, socialTokenDTO.getOpenId());
-        formData.put(ACCESS_TOKEN, socialTokenDTO.getAccessToken());
-        formData.put(OAUTH_CONSUMER_KEY, qqConfigProperties.getAppId());
+        formData.put(SocialLoginConst.QQ_OPEN_ID, socialTokenDTO.getOpenId());
+        formData.put(SocialLoginConst.ACCESS_TOKEN, socialTokenDTO.getAccessToken());
+        formData.put(SocialLoginConst.OAUTH_CONSUMER_KEY, qqConfigProperties.getAppId());
         // 获取QQ返回的用户信息
         QQUserInfoDTO qqUserInfoDTO = JSON.parseObject(restTemplate.getForObject(qqConfigProperties.getUserInfoUrl(), String.class, formData), QQUserInfoDTO.class);
         // 返回用户信息

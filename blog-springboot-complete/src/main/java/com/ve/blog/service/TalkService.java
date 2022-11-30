@@ -28,7 +28,7 @@ public interface TalkService extends IService<Talk> {
     /**
      * 获取说说列表
      *
-     * @return {@link PageResult <TalkDTO>} 说说列表
+     * @return {@link PageResult<TalkDTO>} 说说列表
      */
     PageResult<TalkDTO> listTalks();
 

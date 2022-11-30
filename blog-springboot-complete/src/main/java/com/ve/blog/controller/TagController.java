@@ -3,11 +3,12 @@ package com.ve.blog.controller;
 
 import com.ve.blog.annotation.OptLog;
 import com.ve.blog.dto.TagBackDTO;
+import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.vo.PageResult;
 import com.ve.blog.dto.TagDTO;
 import com.ve.blog.service.TagService;
 import com.ve.blog.vo.*;
-import com.ve.blog.vo.ConditionVO;
+import com.ve.blog.constant.OptTypeConst;
 import com.ve.blog.vo.Result;
 import com.ve.blog.vo.TagVO;
 import io.swagger.annotations.Api;
@@ -17,9 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
-import static com.ve.blog.constant.OptTypeConst.SAVE_OR_UPDATE;
 
 
 /**
@@ -75,7 +73,7 @@ public class TagController {
      * @param tagVO 标签信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "添加或修改标签")
     @PostMapping("/admin/tags")
     public Result<?> saveOrUpdateTag(@Valid @RequestBody TagVO tagVO) {
@@ -89,7 +87,7 @@ public class TagController {
      * @param tagIdList 标签id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除标签")
     @DeleteMapping("/admin/tags")
     public Result<?> deleteTag(@RequestBody List<Integer> tagIdList) {

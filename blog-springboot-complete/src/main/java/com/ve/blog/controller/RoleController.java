@@ -8,6 +8,7 @@ import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.vo.PageResult;
 import com.ve.blog.vo.Result;
 import com.ve.blog.vo.RoleVO;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
-import static com.ve.blog.constant.OptTypeConst.SAVE_OR_UPDATE;
 
 /**
  * 角色控制器
@@ -34,7 +32,7 @@ public class RoleController {
     /**
      * 查询用户角色选项
      *
-     * @return {@link Result <UserRoleDTO>} 用户角色选项
+     * @return {@link Result<UserRoleDTO>} 用户角色选项
      */
     @ApiOperation(value = "查询用户角色选项")
     @GetMapping("/admin/users/role")
@@ -60,7 +58,7 @@ public class RoleController {
      * @param roleVO 角色信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "保存或更新角色")
     @PostMapping("/admin/role")
     public Result<?> saveOrUpdateRole(@RequestBody @Valid RoleVO roleVO) {
@@ -74,7 +72,7 @@ public class RoleController {
      * @param roleIdList 角色id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除角色")
     @DeleteMapping("/admin/roles")
     public Result<?> deleteRoles(@RequestBody List<Integer> roleIdList) {

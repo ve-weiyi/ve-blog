@@ -6,13 +6,11 @@ import com.ve.blog.dto.ArticleSearchDTO;
 import com.ve.blog.dto.MaxwellDataDTO;
 import com.ve.blog.entity.Article;
 import com.ve.blog.util.BeanCopyUtils;
+import com.ve.blog.constant.MQPrefixConst;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-
-import static com.ve.blog.constant.MQPrefixConst.MAXWELL_QUEUE;
 
 /**
  * maxwell监听数据
@@ -21,7 +19,7 @@ import static com.ve.blog.constant.MQPrefixConst.MAXWELL_QUEUE;
  * @date 2021/08/02
  */
 @Component
-@RabbitListener(queues = MAXWELL_QUEUE)
+@RabbitListener(queues = MQPrefixConst.MAXWELL_QUEUE)
 public class MaxWellConsumer {
     @Autowired
     private ElasticsearchDao elasticsearchDao;

@@ -4,6 +4,7 @@ import com.ve.blog.annotation.OptLog;
 import com.ve.blog.service.PageService;
 import com.ve.blog.vo.PageVO;
 import com.ve.blog.vo.Result;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -12,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
-import static com.ve.blog.constant.OptTypeConst.SAVE_OR_UPDATE;
 
 /**
  * 页面控制器
@@ -34,7 +32,7 @@ public class PageController {
      * @param pageId 页面id
      * @return {@link Result <>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除页面")
     @ApiImplicitParam(name = "pageId", value = "页面id", required = true, dataType = "Integer")
     @DeleteMapping("/admin/pages/{pageId}")
@@ -49,7 +47,7 @@ public class PageController {
      * @param pageVO 页面信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "保存或更新页面")
     @PostMapping("/admin/pages")
     public Result<?> saveOrUpdatePage(@Valid @RequestBody PageVO pageVO) {

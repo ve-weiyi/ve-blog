@@ -2,6 +2,10 @@
   <el-container>
     <!-- 侧边栏 -->
     <el-aside width="auto">
+      <div >
+        <el-avatar :size="40" :src="this.$store.state.avatar" />
+<!--        <div v-if="true" class="tit-text">hello world</div>-->
+      </div>
       <SideBar />
     </el-aside>
     <el-container :class="'main-container ' + isHide">

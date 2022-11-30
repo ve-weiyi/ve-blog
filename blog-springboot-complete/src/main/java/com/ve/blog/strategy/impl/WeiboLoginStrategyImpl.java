@@ -9,6 +9,7 @@ import com.ve.blog.dto.WeiboUserInfoDTO;
 import com.ve.blog.enums.LoginTypeEnum;
 import com.ve.blog.exception.BizException;
 import com.ve.blog.vo.WeiboLoginVO;
+import com.ve.blog.constant.SocialLoginConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -21,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.ve.blog.constant.SocialLoginConst.*;
 import static com.ve.blog.enums.StatusCodeEnum.WEIBO_LOGIN_ERROR;
 
 /**
@@ -54,8 +54,8 @@ public class WeiboLoginStrategyImpl extends AbstractSocialLoginStrategyImpl {
     public SocialUserInfoDTO getSocialUserInfo(SocialTokenDTO socialTokenDTO) {
         // 定义请求参数
         Map<String, String> data = new HashMap<>(2);
-        data.put(UID, socialTokenDTO.getOpenId());
-        data.put(ACCESS_TOKEN, socialTokenDTO.getAccessToken());
+        data.put(SocialLoginConst.UID, socialTokenDTO.getOpenId());
+        data.put(SocialLoginConst.ACCESS_TOKEN, socialTokenDTO.getAccessToken());
         // 获取微博用户信息
         WeiboUserInfoDTO weiboUserInfoDTO = restTemplate.getForObject(weiboConfigProperties.getUserInfoUrl(), WeiboUserInfoDTO.class, data);
         // 返回用户信息
@@ -75,11 +75,11 @@ public class WeiboLoginStrategyImpl extends AbstractSocialLoginStrategyImpl {
         // 根据code换取微博uid和accessToken
         MultiValueMap<String, String> weiboData = new LinkedMultiValueMap<>();
         // 定义微博token请求参数
-        weiboData.add(CLIENT_ID, weiboConfigProperties.getAppId());
-        weiboData.add(CLIENT_SECRET, weiboConfigProperties.getAppSecret());
-        weiboData.add(GRANT_TYPE, weiboConfigProperties.getGrantType());
-        weiboData.add(REDIRECT_URI, weiboConfigProperties.getRedirectUrl());
-        weiboData.add(CODE, weiBoLoginVO.getCode());
+        weiboData.add(SocialLoginConst.CLIENT_ID, weiboConfigProperties.getAppId());
+        weiboData.add(SocialLoginConst.CLIENT_SECRET, weiboConfigProperties.getAppSecret());
+        weiboData.add(SocialLoginConst.GRANT_TYPE, weiboConfigProperties.getGrantType());
+        weiboData.add(SocialLoginConst.REDIRECT_URI, weiboConfigProperties.getRedirectUrl());
+        weiboData.add(SocialLoginConst.CODE, weiBoLoginVO.getCode());
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(weiboData, null);
         try {
             return restTemplate.exchange(weiboConfigProperties.getAccessTokenUrl(), HttpMethod.POST, requestEntity, WeiboTokenDTO.class).getBody();

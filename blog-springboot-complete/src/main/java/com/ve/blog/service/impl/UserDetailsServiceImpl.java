@@ -3,8 +3,6 @@ package com.ve.blog.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ve.blog.dao.*;
-import com.ve.blog.dao.UserAuthDao;
-import com.ve.blog.dao.UserInfoDao;
 import com.ve.blog.dto.UserDetailDTO;
 import com.ve.blog.entity.UserAuth;
 import com.ve.blog.entity.UserInfo;
@@ -13,6 +11,9 @@ import com.ve.blog.service.RedisService;
 import com.ve.blog.util.IpUtils;
 import com.ve.blog.constant.RedisPrefixConst;
 import com.ve.blog.dao.RoleDao;
+import com.ve.blog.dao.UserAuthDao;
+import com.ve.blog.dao.UserInfoDao;
+import com.ve.blog.enums.ZoneEnum;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,8 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
-
-import static com.ve.blog.enums.ZoneEnum.SHANGHAI;
 
 
 /**
@@ -104,7 +103,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .isDisable(userInfo.getIsDisable())
                 .browser(userAgent.getBrowser().getName())
                 .os(userAgent.getOperatingSystem().getName())
-                .lastLoginTime(LocalDateTime.now(ZoneId.of(SHANGHAI.getZone())))
+                .lastLoginTime(LocalDateTime.now(ZoneId.of(ZoneEnum.SHANGHAI.getZone())))
                 .build();
     }
 

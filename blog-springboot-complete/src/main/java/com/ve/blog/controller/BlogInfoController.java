@@ -12,6 +12,7 @@ import com.ve.blog.vo.BlogInfoVO;
 import com.ve.blog.vo.Result;
 import com.ve.blog.vo.VoiceVO;
 import com.ve.blog.vo.WebsiteConfigVO;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -21,8 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.validation.Valid;
-
-import static com.ve.blog.constant.OptTypeConst.UPDATE;
 
 /**
  * 博客信息控制器
@@ -43,7 +42,7 @@ public class BlogInfoController {
     /**
      * 查看博客信息
      *
-     * @return {@link Result <BlogHomeInfoDTO>} 博客信息
+     * @return {@link Result<BlogHomeInfoDTO>} 博客信息
      */
     @ApiOperation(value = "查看博客信息")
     @GetMapping("/")
@@ -116,7 +115,7 @@ public class BlogInfoController {
      * @param blogInfoVO 博客信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "修改关于我信息")
     @PutMapping("/admin/about")
     public Result<?> updateAbout(@Valid @RequestBody BlogInfoVO blogInfoVO) {

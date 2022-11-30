@@ -2,15 +2,13 @@ package com.ve.blog.handler;
 
 import com.ve.blog.exception.BizException;
 import com.ve.blog.vo.Result;
+import com.ve.blog.enums.StatusCodeEnum;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Objects;
-
-import static com.ve.blog.enums.StatusCodeEnum.SYSTEM_ERROR;
-import static com.ve.blog.enums.StatusCodeEnum.VALID_ERROR;
 
 
 /**
@@ -42,7 +40,7 @@ public class ControllerAdviceHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result<?> errorHandler(MethodArgumentNotValidException e) {
-        return Result.fail(VALID_ERROR.getCode(), Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage());
+        return Result.fail(StatusCodeEnum.VALID_ERROR.getCode(), Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage());
     }
 
     /**
@@ -54,7 +52,7 @@ public class ControllerAdviceHandler {
     @ExceptionHandler(value = Exception.class)
     public Result<?> errorHandler(Exception e) {
         e.printStackTrace();
-        return Result.fail(SYSTEM_ERROR.getCode(), SYSTEM_ERROR.getDesc());
+        return Result.fail(StatusCodeEnum.SYSTEM_ERROR.getCode(), StatusCodeEnum.SYSTEM_ERROR.getDesc());
     }
 
 }

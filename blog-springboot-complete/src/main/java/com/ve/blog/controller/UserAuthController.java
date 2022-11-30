@@ -4,10 +4,9 @@ package com.ve.blog.controller;
 import com.ve.blog.annotation.AccessLimit;
 import com.ve.blog.dto.UserAreaDTO;
 import com.ve.blog.dto.UserInfoDTO;
-import com.ve.blog.vo.PageResult;
+import com.ve.blog.vo.*;
 import com.ve.blog.dto.UserBackDTO;
 import com.ve.blog.service.UserAuthService;
-import com.ve.blog.vo.*;
 import com.ve.blog.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,7 +33,7 @@ public class UserAuthController {
      * 发送邮箱验证码
      *
      * @param username 用户名
-     * @return {@link Result <>}
+     * @return {@link Result<>}
      */
     @AccessLimit(seconds = 60, maxCount = 1)
     @ApiOperation(value = "发送邮箱验证码")

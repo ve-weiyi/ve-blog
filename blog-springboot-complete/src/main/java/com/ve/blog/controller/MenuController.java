@@ -31,7 +31,7 @@ public class MenuController {
      * 查询菜单列表
      *
      * @param conditionVO 条件
-     * @return {@link Result <MenuDTO>} 菜单列表
+     * @return {@link Result<MenuDTO>} 菜单列表
      */
     @ApiOperation(value = "查看菜单列表")
     @GetMapping("/admin/menus")

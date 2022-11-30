@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ve.blog.dao.*;
 import com.ve.blog.dto.*;
-import com.ve.blog.dao.*;
-import com.ve.blog.dto.*;
 import com.ve.blog.entity.Article;
 import com.ve.blog.entity.WebsiteConfig;
 import com.ve.blog.service.BlogInfoService;
@@ -21,6 +19,9 @@ import com.ve.blog.vo.PageVO;
 import com.ve.blog.vo.WebsiteConfigVO;
 import com.ve.blog.constant.CommonConst;
 import com.ve.blog.constant.RedisPrefixConst;
+import com.ve.blog.dao.*;
+import com.ve.blog.dto.*;
+import com.ve.blog.enums.ArticleStatusEnum;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -32,8 +33,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.ve.blog.enums.ArticleStatusEnum.PUBLIC;
 
 /**
  * 博客信息服务
@@ -69,7 +68,7 @@ public class BlogInfoServiceImpl implements BlogInfoService {
     public BlogHomeInfoDTO getBlogHomeInfo() {
         // 查询文章数量
         Integer articleCount = articleDao.selectCount(new LambdaQueryWrapper<Article>()
-                .eq(Article::getStatus, PUBLIC.getStatus())
+                .eq(Article::getStatus, ArticleStatusEnum.PUBLIC.getStatus())
                 .eq(Article::getIsDelete, CommonConst.FALSE));
         // 查询分类数量
         Integer categoryCount = categoryDao.selectCount(null);

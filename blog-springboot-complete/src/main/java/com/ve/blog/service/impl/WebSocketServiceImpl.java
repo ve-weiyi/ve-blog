@@ -11,10 +11,11 @@ import com.ve.blog.entity.ChatRecord;
 import com.ve.blog.enums.FilePathEnum;
 import com.ve.blog.strategy.context.UploadStrategyContext;
 import com.ve.blog.util.*;
+import com.ve.blog.vo.VoiceVO;
+import com.ve.blog.enums.ChatTypeEnum;
 import com.ve.blog.util.BeanCopyUtils;
 import com.ve.blog.util.HTMLUtils;
 import com.ve.blog.util.IpUtils;
-import com.ve.blog.vo.VoiceVO;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -29,8 +30,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArraySet;
-
-import static com.ve.blog.enums.ChatTypeEnum.*;
 
 /**
  * websocket服务
@@ -99,7 +98,7 @@ public class WebSocketServiceImpl {
         ChatRecordDTO chatRecordDTO = listChartRecords(endpointConfig);
         // 发送消息
         WebsocketMessageDTO messageDTO = WebsocketMessageDTO.builder()
-                .type(HISTORY_RECORD.getType())
+                .type(ChatTypeEnum.HISTORY_RECORD.getType())
                 .data(chatRecordDTO)
                 .build();
         synchronized (session) {
@@ -115,7 +114,7 @@ public class WebSocketServiceImpl {
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
         WebsocketMessageDTO messageDTO = JSON.parseObject(message, WebsocketMessageDTO.class);
-        switch (Objects.requireNonNull(getChatType(messageDTO.getType()))) {
+        switch (Objects.requireNonNull(ChatTypeEnum.getChatType(messageDTO.getType()))) {
             case SEND_MESSAGE:
                 // 发送消息
                 ChatRecord chatRecord = JSON.parseObject(JSON.toJSONString(messageDTO.getData()), ChatRecord.class);
@@ -181,7 +180,7 @@ public class WebSocketServiceImpl {
     public void updateOnlineCount() throws IOException {
         // 获取当前在线人数
         WebsocketMessageDTO messageDTO = WebsocketMessageDTO.builder()
-                .type(ONLINE_COUNT.getType())
+                .type(ChatTypeEnum.ONLINE_COUNT.getType())
                 .data(webSocketSet.size())
                 .build();
         // 广播消息
@@ -202,7 +201,7 @@ public class WebSocketServiceImpl {
         chatRecordDao.insert(chatRecord);
         // 发送消息
         WebsocketMessageDTO messageDTO = WebsocketMessageDTO.builder()
-                .type(VOICE_MESSAGE.getType())
+                .type(ChatTypeEnum.VOICE_MESSAGE.getType())
                 .data(chatRecord)
                 .build();
         // 广播消息

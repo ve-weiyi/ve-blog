@@ -31,7 +31,7 @@ public class LogController {
      * 查看操作日志
      *
      * @param conditionVO 条件
-     * @return {@link Result <OperationLogDTO>} 日志列表
+     * @return {@link Result<OperationLogDTO>} 日志列表
      */
     @ApiOperation(value = "查看操作日志")
     @GetMapping("/admin/operation/logs")

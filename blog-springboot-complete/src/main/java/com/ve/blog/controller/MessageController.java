@@ -4,11 +4,11 @@ package com.ve.blog.controller;
 import com.ve.blog.annotation.AccessLimit;
 import com.ve.blog.annotation.OptLog;
 import com.ve.blog.dto.MessageBackDTO;
-import com.ve.blog.vo.PageResult;
+import com.ve.blog.vo.*;
 import com.ve.blog.vo.*;
 import com.ve.blog.dto.MessageDTO;
 import com.ve.blog.service.MessageService;
-import com.ve.blog.vo.*;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
-import static com.ve.blog.constant.OptTypeConst.UPDATE;
 
 /**
  * 留言控制器
@@ -75,7 +72,7 @@ public class MessageController {
      * @param reviewVO 审核信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "审核留言")
     @PutMapping("/admin/messages/review")
     public Result<?> updateMessagesReview(@Valid @RequestBody ReviewVO reviewVO) {
@@ -89,7 +86,7 @@ public class MessageController {
      * @param messageIdList 留言id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除留言")
     @DeleteMapping("/admin/messages")
     public Result<?> deleteMessages(@RequestBody List<Integer> messageIdList) {

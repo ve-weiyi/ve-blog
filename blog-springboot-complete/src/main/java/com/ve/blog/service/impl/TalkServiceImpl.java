@@ -13,11 +13,12 @@ import com.ve.blog.service.RedisService;
 import com.ve.blog.service.TalkService;
 import com.ve.blog.dao.TalkDao;
 import com.ve.blog.util.*;
-import com.ve.blog.util.*;
 import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.vo.PageResult;
 import com.ve.blog.vo.TalkVO;
 import com.ve.blog.constant.RedisPrefixConst;
+import com.ve.blog.enums.TalkStatusEnum;
+import com.ve.blog.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static com.ve.blog.enums.TalkStatusEnum.PUBLIC;
 
 /**
  * 说说服务
@@ -47,7 +46,7 @@ public class TalkServiceImpl extends ServiceImpl<TalkDao, Talk> implements TalkS
     public List<String> listHomeTalks() {
         // 查询最新10条说说
         return talkDao.selectList(new LambdaQueryWrapper<Talk>()
-                        .eq(Talk::getStatus, PUBLIC.getStatus())
+                        .eq(Talk::getStatus, TalkStatusEnum.PUBLIC.getStatus())
                         .orderByDesc(Talk::getIsTop)
                         .orderByDesc(Talk::getId)
                         .last("limit 10"))
@@ -60,7 +59,7 @@ public class TalkServiceImpl extends ServiceImpl<TalkDao, Talk> implements TalkS
     public PageResult<TalkDTO> listTalks() {
         // 查询说说总量
         Integer count = talkDao.selectCount((new LambdaQueryWrapper<Talk>()
-                .eq(Talk::getStatus, PUBLIC.getStatus())));
+                .eq(Talk::getStatus, TalkStatusEnum.PUBLIC.getStatus())));
         if (count == 0) {
             return new PageResult<>();
         }

@@ -2,11 +2,11 @@
 # 配置端口
 server:
   port: 8088
-  ssl:
-    #   classpath是resources目录,classpath*: 通配
-    key-store: classpath:jks/ve77.cn.jks
-    key-store-password: ve77.cn
-    key-store-type: jks
+#  ssl:
+#    #   classpath是resources目录,classpath*: 通配
+#    key-store: classpath:jks/ve77.cn.jks
+#    key-store-password: ve77.cn
+#    key-store-type: jks
   servlet:
     #  前缀,要以 / 开头
     context-path: /api

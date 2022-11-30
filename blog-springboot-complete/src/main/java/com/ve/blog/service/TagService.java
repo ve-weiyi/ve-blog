@@ -29,7 +29,7 @@ public interface TagService extends IService<Tag> {
      * 查询后台标签
      *
      * @param condition 条件
-     * @return {@link PageResult<TagBackDTO>} 标签列表
+     * @return {@link PageResult< TagBackDTO >} 标签列表
      */
     PageResult<TagBackDTO> listTagBackDTO(ConditionVO condition);
 

@@ -3,11 +3,11 @@ package com.ve.blog.controller;
 import com.ve.blog.annotation.OptLog;
 import com.ve.blog.dto.CommentBackDTO;
 import com.ve.blog.dto.CommentDTO;
-import com.ve.blog.vo.PageResult;
+import com.ve.blog.vo.*;
 import com.ve.blog.dto.ReplyDTO;
 import com.ve.blog.service.CommentService;
 import com.ve.blog.vo.*;
-import com.ve.blog.vo.*;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.*;
 
 /**
  * 评论控制器
@@ -88,7 +86,7 @@ public class CommentController {
      * @param reviewVO 审核信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "审核评论")
     @PutMapping("/admin/comments/review")
     public Result<?> updateCommentsReview(@Valid @RequestBody ReviewVO reviewVO) {
@@ -102,7 +100,7 @@ public class CommentController {
      * @param commentIdList 评论id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除评论")
     @DeleteMapping("/admin/comments")
     public Result<?> deleteComments(@RequestBody List<Integer> commentIdList) {

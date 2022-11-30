@@ -10,6 +10,7 @@ import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.vo.PageResult;
 import com.ve.blog.vo.PhotoAlbumVO;
 import com.ve.blog.vo.Result;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -19,9 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.REMOVE;
-import static com.ve.blog.constant.OptTypeConst.SAVE_OR_UPDATE;
 
 /**
  * 相册控制器
@@ -41,7 +39,7 @@ public class PhotoAlbumController {
      * 上传相册封面
      *
      * @param file 文件
-     * @return {@link Result <String>} 相册封面地址
+     * @return {@link Result<String>} 相册封面地址
      */
     @ApiOperation(value = "上传相册封面")
     @ApiImplicitParam(name = "file", value = "相册封面", required = true, dataType = "MultipartFile")
@@ -56,7 +54,7 @@ public class PhotoAlbumController {
      * @param photoAlbumVO 相册信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE_OR_UPDATE)
+    @OptLog(optType = OptTypeConst.SAVE_OR_UPDATE)
     @ApiOperation(value = "保存或更新相册")
     @PostMapping("/admin/photos/albums")
     public Result<?> saveOrUpdatePhotoAlbum(@Valid @RequestBody PhotoAlbumVO photoAlbumVO) {
@@ -106,7 +104,7 @@ public class PhotoAlbumController {
      * @param albumId 相册id
      * @return {@link Result}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "根据id删除相册")
     @ApiImplicitParam(name = "albumId", value = "相册id", required = true, dataType = "Integer")
     @DeleteMapping("/admin/photos/albums/{albumId}")

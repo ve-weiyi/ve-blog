@@ -26,11 +26,10 @@ public class ResourceController {
     @Autowired
     private ResourceService resourceService;
 
-
     /**
      * 查看资源列表
      *
-     * @return {@link Result <ResourceDTO>} 资源列表
+     * @return {@link Result<ResourceDTO>} 资源列表
      */
     @ApiOperation(value = "查看资源列表")
     @GetMapping("/admin/resources")

@@ -5,6 +5,7 @@ import com.ve.blog.dto.PhotoBackDTO;
 import com.ve.blog.dto.PhotoDTO;
 import com.ve.blog.service.PhotoService;
 import com.ve.blog.vo.*;
+import com.ve.blog.constant.OptTypeConst;
 import com.ve.blog.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static com.ve.blog.constant.OptTypeConst.*;
 
 /**
  * 照片控制器
@@ -46,7 +45,7 @@ public class PhotoController {
      * @param photoInfoVO 照片信息
      * @return {@link Result}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "更新照片信息")
     @PutMapping("/admin/photos")
     public Result<?> updatePhoto(@Valid @RequestBody PhotoInfoVO photoInfoVO) {
@@ -60,7 +59,7 @@ public class PhotoController {
      * @param photoVO 照片
      * @return {@link Result<>}
      */
-    @OptLog(optType = SAVE)
+    @OptLog(optType = OptTypeConst.SAVE)
     @ApiOperation(value = "保存照片")
     @PostMapping("/admin/photos")
     public Result<?> savePhotos(@Valid @RequestBody PhotoVO photoVO) {
@@ -74,7 +73,7 @@ public class PhotoController {
      * @param photoVO 照片信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "移动照片相册")
     @PutMapping("/admin/photos/album")
     public Result<?> updatePhotosAlbum(@Valid @RequestBody PhotoVO photoVO) {
@@ -88,7 +87,7 @@ public class PhotoController {
      * @param deleteVO 删除信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "更新照片删除状态")
     @PutMapping("/admin/photos/delete")
     public Result<?> updatePhotoDelete(@Valid @RequestBody DeleteVO deleteVO) {
@@ -102,7 +101,7 @@ public class PhotoController {
      * @param photoIdList 照片id列表
      * @return {@link Result<>}
      */
-    @OptLog(optType = REMOVE)
+    @OptLog(optType = OptTypeConst.REMOVE)
     @ApiOperation(value = "删除照片")
     @DeleteMapping("/admin/photos")
     public Result<?> deletePhotos(@RequestBody List<Integer> photoIdList) {

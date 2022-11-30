@@ -5,10 +5,10 @@ module.exports = {
     proxy: {
       "/api": {
         // localhost虽然可以连接api，但是前端无法看到响应结果
-        target: "https://localhost:8088",
+        target: "http://localhost:8080",
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "/api"
+          "^/api": "/api/v1"
         },
         logLevel: "debug" // 打印代理以后的地址
       }

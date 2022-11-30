@@ -1,9 +1,9 @@
 package com.ve.blog.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.ve.blog.dto.*;
 import com.ve.blog.dto.*;
 import com.ve.blog.entity.Article;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.ve.blog.vo.*;
 import com.ve.blog.vo.*;
 
@@ -106,4 +106,11 @@ public interface ArticleService extends IService<Article> {
      */
     void deleteArticles(List<Integer> articleIdList);
 
+    /**
+     * 导出文章
+     *
+     * @param articleIdList 文章id列表
+     * @return {@link List}<{@link String}> 文件地址
+     */
+    List<String> exportArticles(List<Integer> articleIdList);
 }

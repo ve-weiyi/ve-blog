@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ve.blog.dto.ArticleSearchDTO;
 import com.ve.blog.strategy.SearchStrategy;
+import com.ve.blog.constant.CommonConst;
 import lombok.extern.log4j.Log4j2;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.ve.blog.constant.CommonConst.*;
 import static com.ve.blog.enums.ArticleStatusEnum.PUBLIC;
 
 /**
@@ -55,7 +55,7 @@ public class EsSearchStrategyImpl implements SearchStrategy {
         // 根据关键词搜索文章标题或内容
         boolQueryBuilder.must(QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("articleTitle", keywords))
                         .should(QueryBuilders.matchQuery("articleContent", keywords)))
-                .must(QueryBuilders.termQuery("isDelete", FALSE))
+                .must(QueryBuilders.termQuery("isDelete", CommonConst.FALSE))
                 .must(QueryBuilders.termQuery("status", PUBLIC.getStatus()));
         nativeSearchQueryBuilder.withQuery(boolQueryBuilder);
         return nativeSearchQueryBuilder;
@@ -70,12 +70,12 @@ public class EsSearchStrategyImpl implements SearchStrategy {
     private List<ArticleSearchDTO> search(NativeSearchQueryBuilder nativeSearchQueryBuilder) {
         // 添加文章标题高亮
         HighlightBuilder.Field titleField = new HighlightBuilder.Field("articleTitle");
-        titleField.preTags(PRE_TAG);
-        titleField.postTags(POST_TAG);
+        titleField.preTags(CommonConst.PRE_TAG);
+        titleField.postTags(CommonConst.POST_TAG);
         // 添加文章内容高亮
         HighlightBuilder.Field contentField = new HighlightBuilder.Field("articleContent");
-        contentField.preTags(PRE_TAG);
-        contentField.postTags(POST_TAG);
+        contentField.preTags(CommonConst.PRE_TAG);
+        contentField.postTags(CommonConst.POST_TAG);
         contentField.fragmentSize(200);
         nativeSearchQueryBuilder.withHighlightFields(titleField, contentField);
         // 搜索

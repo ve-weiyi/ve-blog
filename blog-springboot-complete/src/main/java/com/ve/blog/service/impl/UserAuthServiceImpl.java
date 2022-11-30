@@ -9,10 +9,6 @@ import com.ve.blog.constant.CommonConst;
 import com.ve.blog.dao.UserInfoDao;
 import com.ve.blog.dao.UserRoleDao;
 import com.ve.blog.dto.*;
-import com.ve.blog.dto.EmailDTO;
-import com.ve.blog.dto.UserAreaDTO;
-import com.ve.blog.dto.UserBackDTO;
-import com.ve.blog.dto.UserInfoDTO;
 import com.ve.blog.entity.UserInfo;
 import com.ve.blog.entity.UserAuth;
 import com.ve.blog.dao.UserAuthDao;
@@ -30,6 +26,12 @@ import com.ve.blog.util.UserUtils;
 import com.ve.blog.vo.*;
 import com.ve.blog.constant.MQPrefixConst;
 import com.ve.blog.constant.RedisPrefixConst;
+import com.ve.blog.dto.EmailDTO;
+import com.ve.blog.dto.UserAreaDTO;
+import com.ve.blog.dto.UserBackDTO;
+import com.ve.blog.dto.UserInfoDTO;
+import com.ve.blog.enums.UserAreaTypeEnum;
+import com.ve.blog.util.CommonUtils;
 import com.ve.blog.vo.*;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -42,10 +44,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.ve.blog.enums.UserAreaTypeEnum.getUserAreaType;
-import static com.ve.blog.util.CommonUtils.checkEmail;
-import static com.ve.blog.util.CommonUtils.getRandomCode;
 
 
 /**
@@ -74,11 +72,11 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuth> impl
     @Override
     public void sendCode(String username) {
         // 校验账号是否合法
-        if (!checkEmail(username)) {
+        if (!CommonUtils.checkEmail(username)) {
             throw new BizException("请输入正确邮箱");
         }
         // 生成六位随机验证码发送
-        String code = getRandomCode();
+        String code = CommonUtils.getRandomCode();
         // 发送验证码
         EmailDTO emailDTO = EmailDTO.builder()
                 .email(username)
@@ -93,7 +91,7 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuth> impl
     @Override
     public List<UserAreaDTO> listUserAreas(ConditionVO conditionVO) {
         List<UserAreaDTO> userAreaDTOList = new ArrayList<>();
-        switch (Objects.requireNonNull(getUserAreaType(conditionVO.getType()))) {
+        switch (Objects.requireNonNull(UserAreaTypeEnum.getUserAreaType(conditionVO.getType()))) {
             case USER:
                 // 查询注册用户区域分布
                 Object userArea = redisService.get(RedisPrefixConst.USER_AREA);

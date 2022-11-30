@@ -2,11 +2,11 @@ package com.ve.blog.controller;
 
 
 import com.ve.blog.annotation.OptLog;
-import com.ve.blog.vo.PageResult;
+import com.ve.blog.vo.*;
 import com.ve.blog.dto.UserOnlineDTO;
 import com.ve.blog.service.UserInfoService;
 import com.ve.blog.vo.*;
-import com.ve.blog.vo.*;
+import com.ve.blog.constant.OptTypeConst;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-
-
-import static com.ve.blog.constant.OptTypeConst.UPDATE;
 
 /**
  * 用户信息控制器
@@ -36,7 +33,7 @@ public class UserInfoController {
      * 更新用户信息
      *
      * @param userInfoVO 用户信息
-     * @return {@link Result <>}
+     * @return {@link Result<>}
      */
     @ApiOperation(value = "更新用户信息")
     @PutMapping("/users/info")
@@ -77,7 +74,7 @@ public class UserInfoController {
      * @param userRoleVO 用户角色信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "修改用户角色")
     @PutMapping("/admin/users/role")
     public Result<?> updateUserRole(@Valid @RequestBody UserRoleVO userRoleVO) {
@@ -91,7 +88,7 @@ public class UserInfoController {
      * @param userDisableVO 用户禁用信息
      * @return {@link Result<>}
      */
-    @OptLog(optType = UPDATE)
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "修改用户禁用状态")
     @PutMapping("/admin/users/disable")
     public Result<?> updateUserDisable(@Valid @RequestBody UserDisableVO userDisableVO) {

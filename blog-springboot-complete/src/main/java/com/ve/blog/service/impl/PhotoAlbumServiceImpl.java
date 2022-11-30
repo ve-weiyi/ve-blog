@@ -18,14 +18,13 @@ import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.vo.PageResult;
 import com.ve.blog.vo.PhotoAlbumVO;
 import com.ve.blog.constant.CommonConst;
+import com.ve.blog.enums.PhotoAlbumStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
-
-import static com.ve.blog.enums.PhotoAlbumStatusEnum.PUBLIC;
 
 
 /**
@@ -113,7 +112,7 @@ public class PhotoAlbumServiceImpl extends ServiceImpl<PhotoAlbumDao, PhotoAlbum
     public List<PhotoAlbumDTO> listPhotoAlbums() {
         // 查询相册列表
         List<PhotoAlbum> photoAlbumList = photoAlbumDao.selectList(new LambdaQueryWrapper<PhotoAlbum>()
-                .eq(PhotoAlbum::getStatus, PUBLIC.getStatus())
+                .eq(PhotoAlbum::getStatus, PhotoAlbumStatusEnum.PUBLIC.getStatus())
                 .eq(PhotoAlbum::getIsDelete, CommonConst.FALSE)
                 .orderByDesc(PhotoAlbum::getId));
         return BeanCopyUtils.copyList(photoAlbumList, PhotoAlbumDTO.class);

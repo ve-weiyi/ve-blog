@@ -6,6 +6,7 @@ import com.ve.blog.dao.ArticleDao;
 import com.ve.blog.dto.ArticleSearchDTO;
 import com.ve.blog.entity.Article;
 import com.ve.blog.strategy.SearchStrategy;
+import com.ve.blog.constant.CommonConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.ve.blog.constant.CommonConst.*;
 import static com.ve.blog.enums.ArticleStatusEnum.PUBLIC;
 
 /**
@@ -35,7 +35,7 @@ public class MySqlSearchStrategyImpl implements SearchStrategy {
         }
         // 搜索文章
         List<Article> articleList = articleDao.selectList(new LambdaQueryWrapper<Article>()
-                .eq(Article::getIsDelete, FALSE)
+                .eq(Article::getIsDelete, CommonConst.FALSE)
                 .eq(Article::getStatus, PUBLIC.getStatus())
                 .and(i -> i.like(Article::getArticleTitle, keywords)
                         .or()
@@ -55,10 +55,10 @@ public class MySqlSearchStrategyImpl implements SearchStrategy {
                 int postIndex = postLength > 175 ? last + 175 : last + postLength;
                 String postText = item.getArticleContent().substring(index, postIndex);
                 // 文章内容高亮
-                articleContent = (preText + postText).replaceAll(keywords, PRE_TAG + keywords + POST_TAG);
+                articleContent = (preText + postText).replaceAll(keywords, CommonConst.PRE_TAG + keywords + CommonConst.POST_TAG);
             }
             // 文章标题高亮
-            String articleTitle = item.getArticleTitle().replaceAll(keywords, PRE_TAG + keywords + POST_TAG);
+            String articleTitle = item.getArticleTitle().replaceAll(keywords, CommonConst.PRE_TAG + keywords + CommonConst.POST_TAG);
             return ArticleSearchDTO.builder()
                     .id(item.getId())
                     .articleTitle(articleTitle)

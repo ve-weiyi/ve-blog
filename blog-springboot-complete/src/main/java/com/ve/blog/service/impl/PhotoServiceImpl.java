@@ -17,6 +17,7 @@ import com.ve.blog.util.BeanCopyUtils;
 import com.ve.blog.util.PageUtils;
 import com.ve.blog.vo.*;
 import com.ve.blog.constant.CommonConst;
+import com.ve.blog.enums.PhotoAlbumStatusEnum;
 import com.ve.blog.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static com.ve.blog.enums.PhotoAlbumStatusEnum.PUBLIC;
 
 /**
  * 照片服务
@@ -122,7 +121,7 @@ public class PhotoServiceImpl extends ServiceImpl<PhotoDao, Photo> implements Ph
         PhotoAlbum photoAlbum = photoAlbumService.getOne(new LambdaQueryWrapper<PhotoAlbum>()
                 .eq(PhotoAlbum::getId, albumId)
                 .eq(PhotoAlbum::getIsDelete, CommonConst.FALSE)
-                .eq(PhotoAlbum::getStatus, PUBLIC.getStatus()));
+                .eq(PhotoAlbum::getStatus, PhotoAlbumStatusEnum.PUBLIC.getStatus()));
         if (Objects.isNull(photoAlbum)) {
             throw new BizException("相册不存在");
         }

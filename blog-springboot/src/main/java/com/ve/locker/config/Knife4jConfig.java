@@ -32,7 +32,7 @@ public class Knife4jConfig {
                 .host("https://www.ve77.cn")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.minzheng.blog.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.ve.blog.controller"))
                 .paths(PathSelectors.any())
                 .build();
         //添加登录认证
