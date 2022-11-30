@@ -1,6 +1,7 @@
 package com.ve.blog.controller;
 
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.ve.blog.annotation.AccessLimit;
 import com.ve.blog.dto.UserAreaDTO;
 import com.ve.blog.dto.UserInfoDTO;
@@ -105,6 +106,18 @@ public class UserAuthController {
     public Result<?> updateAdminPassword(@Valid @RequestBody PasswordVO passwordVO) {
         userAuthService.updateAdminPassword(passwordVO);
         return Result.ok();
+    }
+
+    /**
+     * 登录
+     * @param user 登录信息
+     * @return {@link Result<  String  >} 用户信息
+     */
+    @ApiOperationSupport(order = 3)
+    @ApiOperation(value = "登录")
+    @PostMapping("/users/login")
+    public Result<?> login(@Valid UserVO user) {
+        return Result.ok(userAuthService.login(user));
     }
 
     /**

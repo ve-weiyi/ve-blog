@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ve.blog.strategy.context.UploadStrategyContext;
 import com.ve.blog.vo.*;
-import com.ve.blog.dto.UserDetailDTO;
+import com.ve.blog.dto.UserDetailsDTO;
 import com.ve.blog.dto.UserOnlineDTO;
 import com.ve.blog.entity.UserInfo;
 import com.ve.blog.dao.UserInfoDao;
@@ -21,7 +21,6 @@ import com.ve.blog.util.UserUtils;
 import com.ve.blog.vo.ConditionVO;
 import com.ve.blog.constant.RedisPrefixConst;
 import com.ve.blog.util.PageUtils;
-import com.ve.blog.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
@@ -148,8 +147,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
     public void removeOnlineUser(Integer userInfoId) {
         // 获取用户session
         List<Object> userInfoList = sessionRegistry.getAllPrincipals().stream().filter(item -> {
-            UserDetailDTO userDetailDTO = (UserDetailDTO) item;
-            return userDetailDTO.getUserInfoId().equals(userInfoId);
+            UserDetailsDTO userDetailsDTO = (UserDetailsDTO) item;
+            return userDetailsDTO.getUserInfoId().equals(userInfoId);
         }).collect(Collectors.toList());
         List<SessionInformation> allSessions = new ArrayList<>();
         userInfoList.forEach(item -> allSessions.addAll(sessionRegistry.getAllSessions(item, false)));

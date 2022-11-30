@@ -1,6 +1,6 @@
 package com.ve.blog.util;
 
-import com.ve.blog.dto.UserDetailDTO;
+import com.ve.blog.dto.UserDetailsDTO;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +19,8 @@ public class UserUtils {
      *
      * @return 用户登录信息
      */
-    public static UserDetailDTO getLoginUser() {
-        return (UserDetailDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public static UserDetailsDTO getLoginUser() {
+        return (UserDetailsDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

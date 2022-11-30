@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  */
 @Data
 @Builder
-public class UserDetailDTO implements UserDetails {
+public class UserDetailsDTO implements UserDetails {
 
     /**
      * 用户账号id

@@ -79,4 +79,11 @@ public interface UserAuthService extends IService<UserAuth> {
      */
     PageResult<UserBackDTO> listUserBackDTO(ConditionVO condition);
 
+    /**
+     * 用户登录
+     *
+     * @param user 登录信息
+     * @return 用户登录信息
+     */
+    LoginVO login(UserVO user);
 }

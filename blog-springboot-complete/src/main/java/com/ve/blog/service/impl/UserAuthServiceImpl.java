@@ -21,8 +21,7 @@ import com.ve.blog.service.RedisService;
 import com.ve.blog.service.UserAuthService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ve.blog.strategy.context.SocialLoginStrategyContext;
-import com.ve.blog.util.PageUtils;
-import com.ve.blog.util.UserUtils;
+import com.ve.blog.util.*;
 import com.ve.blog.vo.*;
 import com.ve.blog.constant.MQPrefixConst;
 import com.ve.blog.constant.RedisPrefixConst;
@@ -31,14 +30,15 @@ import com.ve.blog.dto.UserAreaDTO;
 import com.ve.blog.dto.UserBackDTO;
 import com.ve.blog.dto.UserInfoDTO;
 import com.ve.blog.enums.UserAreaTypeEnum;
-import com.ve.blog.util.CommonUtils;
-import com.ve.blog.vo.*;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,12 +62,20 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuth> impl
     private UserRoleDao userRoleDao;
     @Autowired
     private UserInfoDao userInfoDao;
+
     @Autowired
     private BlogInfoService blogInfoService;
     @Autowired
     private RabbitTemplate rabbitTemplate;
     @Autowired
     private SocialLoginStrategyContext socialLoginStrategyContext;
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     @Override
     public void sendCode(String username) {
@@ -186,6 +194,38 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuth> impl
         // 获取后台用户列表
         List<UserBackDTO> userBackDTOList = userAuthDao.listUsers(PageUtils.getLimitCurrent(), PageUtils.getSize(), condition);
         return new PageResult<>(userBackDTOList, count);
+    }
+
+
+    @Override
+    public LoginVO login(UserVO user) {
+        String username=user.getUsername();
+        String password=user.getPassword();
+        //登录
+        UserDetailsDTO userDetails = userDetailsService.loadUserByUsername(username);
+
+        if (Objects.isNull(userDetails)) {
+            throw new BizException("用户名不存在!");
+        }
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new BizException("用户名密码不正确!");
+        }
+        if (!userDetails.isEnabled()) {
+            throw new BizException("账号被禁用，请联系管理员!");
+        }
+        //更新security登录用户对象,放在全文中
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        //生成token
+        String token = jwtTokenUtil.generateToken(userDetails);
+
+        LoginVO loginVO=LoginVO.builder()
+                .tokenHead(jwtTokenUtil.tokenHead)
+                .accessToken(jwtTokenUtil.tokenHead+" "+token)
+                .userInfoDTO(BeanCopyUtils.copyObject(userDetails, UserInfoDTO.class))
+                .build();
+        return loginVO;
     }
 
     @Transactional(rollbackFor = Exception.class)
