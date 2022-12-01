@@ -33,7 +33,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -199,7 +198,7 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuth> impl
         LogUtil.println("用户名："+user.getUsername());
         LogUtil.println("密码："+user.getPassword());
         //登录
-        UserDetailDTO userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetailsDTO userDetails = userDetailsService.loadUserByUsername(username);
 
         if (Objects.isNull(userDetails)) {
             throw new BizException("用户名不存在!");

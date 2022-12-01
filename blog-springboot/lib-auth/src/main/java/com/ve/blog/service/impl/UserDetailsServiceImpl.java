@@ -3,7 +3,7 @@ package com.ve.blog.service.impl;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.ve.blog.dto.UserDetailDTO;
+import com.ve.blog.dto.UserDetailsDTO;
 import com.ve.blog.entity.UserAuth;
 import com.ve.blog.entity.UserInfo;
 import com.ve.blog.exception.BizException;
@@ -17,7 +17,6 @@ import com.ve.blog.enums.ZoneEnum;
 import com.ve.blog.util.LogUtil;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +53,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @return
      */
     @Override
-    public UserDetailDTO loadUserByUsername(String username) {
+    public UserDetailsDTO loadUserByUsername(String username) {
         LogUtil.println("认证："+username);
         if (StringUtils.isBlank(username)) {
             throw new BizException("用户名不能为空！");
@@ -77,7 +76,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @param request 请求
      * @return 用户登录信息
      */
-    public UserDetailDTO convertUserDetail(UserAuth user, HttpServletRequest request) {
+    public UserDetailsDTO convertUserDetail(UserAuth user, HttpServletRequest request) {
         // 查询账号信息
         UserInfo userInfo = userInfoDao.selectById(user.getUserInfoId());
         // 查询账号角色
@@ -91,7 +90,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String ipSource = IpUtils.getIpSource(ipAddress);
         UserAgent userAgent = IpUtils.getUserAgent(request);
         // 封装权限集合
-        return UserDetailDTO.builder()
+        return UserDetailsDTO.builder()
                 .id(user.getId())
                 .loginType(user.getLoginType())
                 .userInfoId(userInfo.getId())

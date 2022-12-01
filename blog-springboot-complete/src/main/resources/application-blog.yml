@@ -1,0 +1,7 @@
+# 搜索模式 可选 elasticsearch或mysql
+search:
+  mode: mysql
+
+# 网站前台域名（邮件通知用）
+website:
+  url: https://ve77.cn/blog

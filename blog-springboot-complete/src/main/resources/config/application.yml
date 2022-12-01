@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+#    active: debug,app,auth,msg,upload
+
+author:
+  name: ve
+  github: https://github.com/ve-weiyi
+  qq: 791422171
+  email: 791422171@qq.com
+
+project:
+  host: https://ve77.cn
+  ip: 110.42.180.40
+  name: 博客
+  packageName: com.ve.blog
+  version: 1.0.0
+  license:
+  licenseUrl:
+  termsOfServiceUrl: https://ve77.cn/blog
+  desc: 床前明月光，疑是地上霜。

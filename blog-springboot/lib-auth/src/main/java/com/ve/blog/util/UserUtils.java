@@ -1,11 +1,8 @@
 package com.ve.blog.util;
 
-import com.alibaba.fastjson.JSON;
-import com.ve.blog.dto.UserDetailDTO;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import com.ve.blog.dto.UserDetailsDTO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 
 
 /**
@@ -23,14 +20,14 @@ public class UserUtils {
      * https://www.codenong.com/cs109777601/
      * @return 用户登录信息
      */
-    public static UserDetailDTO getLoginUser() {
+    public static UserDetailsDTO getLoginUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication==null) {
             LogUtil.println("auth info is null");
             return null;
         }
         LogUtil.println("auth :"+authentication.getPrincipal());
-        return (UserDetailDTO) authentication.getPrincipal();
+        return (UserDetailsDTO) authentication.getPrincipal();
     }
 
 }

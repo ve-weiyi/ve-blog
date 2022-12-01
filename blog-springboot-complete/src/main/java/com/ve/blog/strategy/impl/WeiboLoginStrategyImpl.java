@@ -1,7 +1,7 @@
 package com.ve.blog.strategy.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.ve.blog.config.WeiboConfigProperties;
+import com.ve.blog.properties.WeiboConfigProperties;
 import com.ve.blog.dto.SocialUserInfoDTO;
 import com.ve.blog.dto.SocialTokenDTO;
 import com.ve.blog.dto.WeiboTokenDTO;

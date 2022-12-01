@@ -2,8 +2,8 @@ package com.ve.blog.config;
 
 
 import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
-import com.ve.blog.application.AuthorProperties;
-import com.ve.blog.application.ProjectProperties;
+import com.ve.blog.properties.AuthorProperties;
+import com.ve.blog.properties.ProjectProperties;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

@@ -1,7 +1,7 @@
 package com.ve.blog.strategy.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.ve.blog.application.QQConfigProperties;
+import com.ve.blog.properties.QQConfigProperties;
 import com.ve.blog.dto.QQTokenDTO;
 import com.ve.blog.dto.QQUserInfoDTO;
 import com.ve.blog.dto.SocialUserInfoDTO;

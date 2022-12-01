@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ve.blog.application.ProjectProperties;
+import com.ve.blog.properties.ProjectProperties;
 import com.ve.blog.dao.ResourceDao;
 import com.ve.blog.dao.RoleResourceDao;
 import com.ve.blog.dto.ResourceDTO;

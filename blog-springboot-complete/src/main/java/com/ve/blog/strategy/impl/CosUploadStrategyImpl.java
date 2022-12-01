@@ -1,6 +1,6 @@
 package com.ve.blog.strategy.impl;
 
-import com.ve.blog.config.CosConfigProperties;
+import com.ve.blog.properties.CosConfigProperties;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;

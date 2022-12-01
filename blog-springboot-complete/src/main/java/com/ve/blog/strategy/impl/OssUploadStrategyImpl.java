@@ -2,7 +2,7 @@ package com.ve.blog.strategy.impl;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
-import com.ve.blog.config.OssConfigProperties;
+import com.ve.blog.properties.OssConfigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

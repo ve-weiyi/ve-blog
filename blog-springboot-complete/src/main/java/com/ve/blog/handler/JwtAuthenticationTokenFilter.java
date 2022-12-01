@@ -2,6 +2,8 @@ package com.ve.blog.handler;
 
 
 import com.ve.blog.dto.UserDetailsDTO;
+import com.ve.blog.properties.CosConfigProperties;
+import com.ve.blog.properties.JwtProperties;
 import com.ve.blog.service.impl.UserDetailsServiceImpl;
 import com.ve.blog.util.JwtTokenUtil;
 import com.ve.blog.util.LogUtil;
@@ -29,6 +31,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+//    @Autowired
+//    private JwtProperties jwtProperties;
+
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
     @Value("${jwt.tokenHead}")
@@ -47,6 +52,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain chain) throws ServletException,
     IOException {
+        LogUtil.println("0.jwt拦截!"+tokenHeader);
         //通过 request 获取请求头
         String authHeader = httpServletRequest.getHeader(tokenHeader);
         LogUtil.println("1.jwt拦截!");
