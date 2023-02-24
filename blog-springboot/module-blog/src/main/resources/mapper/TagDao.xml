@@ -7,7 +7,7 @@
           t.id,
           tag_name,
           COUNT( tat.article_id ) AS article_count,
-          t.create_time
+          t.created_at
         FROM
           tb_tag t
           LEFT JOIN tb_article_tag tat ON t.id = tat.tag_id

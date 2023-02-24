@@ -20,7 +20,7 @@
 		  c.id,
 		  c.category_name,
 		  COUNT( a.id ) AS article_count,
-		  c.create_time
+		  c.created_at
 		FROM
 		  tb_category c
 		  LEFT JOIN tb_article a ON c.id = a.category_id

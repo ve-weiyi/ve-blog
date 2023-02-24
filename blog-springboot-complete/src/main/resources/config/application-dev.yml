@@ -25,7 +25,7 @@ server:
 #    key-store-type: jks
   servlet:
     #  前缀,要以 / 开头
-    context-path: /api
+    context-path: /api/v1
     session:
       timeout: 21600
 
@@ -48,7 +48,7 @@ spring:
           type: com.zaxxer.hikari.HikariDataSource
 
         auth:
-          url: jdbc:mysql://localhost:3306/auth?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+          url: jdbc:mysql://localhost:3306/blog-auth?serverTimezone=Asia/Shanghai&allowMultiQueries=true
           username: root
           password: mysql7914
           driver-class-name: com.mysql.cj.jdbc.Driver
@@ -74,6 +74,7 @@ spring:
     host: localhost
     port: 6379
     password: redis7914
+    database: 0
 
   # es配置 若搜索模式为mysql可删除
   elasticsearch:

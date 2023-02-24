@@ -38,6 +38,7 @@
 
 <script>
 import { generaMenu } from "../../assets/js/menu";
+
 export default {
   data: function() {
     return {
@@ -86,13 +87,18 @@ export default {
           // captcha.show();
 
           //发送登录请求
-          let param = new URLSearchParams();
-          param.append("username", that.loginForm.username);
-          param.append("password", that.loginForm.password);
-          that.axios.post("/api/login", param).then(({ data }) => {
+          // let param = new URLSearchParams();
+          // param.append("username", that.loginForm.username);
+          // param.append("password", that.loginForm.password);
+
+          let params = {
+            username: that.loginForm.username,
+            password: that.loginForm.password
+          };
+          that.axios.post("/api/users/login", params).then(({ data }) => {
             if (data.flag) {
               // 登录后保存用户信息
-              that.$store.commit("login", data.data);
+              that.$store.commit("login", data.data.userInfoDTO);
               // 加载用户菜单
               generaMenu();
               that.$message.success("登录成功");
@@ -101,8 +107,6 @@ export default {
               that.$message.error(data.message);
             }
           });
-
-
         } else {
           return false;
         }
@@ -119,9 +123,10 @@ export default {
   bottom: 0;
   right: 0;
   left: 0;
-  background: url(https://static.talkxj.com/config/0w3pdr.jpg) center center /
+  background: url('../../assets/images/bg.png') center center /
     cover no-repeat;
 }
+
 .login-card {
   position: absolute;
   top: 0;
@@ -131,14 +136,17 @@ export default {
   padding: 170px 60px 180px;
   width: 350px;
 }
+
 .login-title {
   color: #303133;
   font-weight: bold;
   font-size: 1rem;
 }
+
 .login-form {
   margin-top: 1.2rem;
 }
+
 .login-card button {
   margin-top: 1rem;
   width: 100%;

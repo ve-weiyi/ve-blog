@@ -48,7 +48,7 @@ public class PhotoServiceImpl extends ServiceImpl<PhotoDao, Photo> implements Ph
                 .eq(Objects.nonNull(condition.getAlbumId()), Photo::getAlbumId, condition.getAlbumId())
                 .eq(Photo::getIsDelete, condition.getIsDelete())
                 .orderByDesc(Photo::getId)
-                .orderByDesc(Photo::getUpdateTime));
+                .orderByDesc(Photo::getUpdatedAt));
         List<PhotoBackDTO> photoList = BeanCopyUtils.copyList(photoPage.getRecords(), PhotoBackDTO.class);
         return new PageResult<>(photoList, (int) photoPage.getTotal());
     }

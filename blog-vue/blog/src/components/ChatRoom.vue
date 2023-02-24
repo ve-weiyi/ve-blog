@@ -43,7 +43,7 @@
           <div>
             <div class="nickname" v-if="!isSelf(item)">
               {{ item.nickname }}
-              <span style="margin-left:12px">{{ item.createTime | hour }}</span>
+              <span style="margin-left:12px">{{ item.createdAt | hour }}</span>
             </div>
             <!-- 内容 -->
             <div

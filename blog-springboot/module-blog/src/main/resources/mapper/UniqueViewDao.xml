@@ -5,15 +5,15 @@
 
     <select id="listUniqueViews" resultType="com.ve.blog.dto.UniqueViewDTO">
         SELECT
-        DATE_FORMAT( create_time, "%Y-%m-%d" ) as `day`,
+        DATE_FORMAT( created_at, "%Y-%m-%d" ) as `day`,
         views_count
         FROM
         `tb_unique_view`
         WHERE
-        create_time &gt; #{startTime}
-        AND create_time &lt;=  #{endTime}
+        created_at &gt; #{startTime}
+        AND created_at &lt;=  #{endTime}
         ORDER BY
-        create_time
+        created_at
     </select>
 
 

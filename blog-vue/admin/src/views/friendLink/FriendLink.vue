@@ -64,14 +64,14 @@
       <el-table-column prop="linkAddress" label="链接地址" align="center" />
       <el-table-column prop="linkIntro" label="链接介绍" align="center" />
       <el-table-column
-        prop="createTime"
+        prop="createdAt"
         label="创建时间"
         width="140"
         align="center"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
-          {{ scope.row.createTime | date }}
+          {{ scope.row.createdAt | date }}
         </template>
       </el-table-column>
       <!-- 列操作 -->

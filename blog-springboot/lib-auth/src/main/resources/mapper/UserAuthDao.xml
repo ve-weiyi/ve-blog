@@ -10,7 +10,7 @@
         <result column="login_type" property="loginType"/>
         <result column="ip_address" property="ipAddress"/>
         <result column="ip_source" property="ipSource"/>
-        <result column="create_time" property="createTime"/>
+        <result column="created_at" property="createdAt"/>
         <result column="last_login_time" property="lastLoginTime"/>
         <result column="is_disable" property="isDisable"/>
         <collection property="roleList" ofType="com.ve.blog.dto.UserRoleDTO">
@@ -30,7 +30,7 @@
         role_name,
         ip_address,
         ip_source,
-        ua.create_time,
+        ua.created_at,
         last_login_time,
         ui.is_disable
         FROM

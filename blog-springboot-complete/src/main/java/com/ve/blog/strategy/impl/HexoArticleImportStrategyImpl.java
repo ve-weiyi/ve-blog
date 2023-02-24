@@ -82,7 +82,7 @@ public class HexoArticleImportStrategyImpl implements ArticleImportStrategy {
                         if (line.startsWith(HexoConst.TITLE_PREFIX)) {
                             hexoArticleVO.setArticleTitle(line.replace(HexoConst.TITLE_PREFIX, "").trim());
                         } else if (line.startsWith(HexoConst.DATE_PREFIX)) {
-                            hexoArticleVO.setCreateTime(LocalDateTime.parse(line.replace(HexoConst.DATE_PREFIX, "").trim(), formatter));
+                            hexoArticleVO.setCreatedAt(LocalDateTime.parse(line.replace(HexoConst.DATE_PREFIX, "").trim(), formatter));
                         } else if (line.startsWith(HexoConst.CATEGORIES_PREFIX)) {
                             flag.set(HexoConst.CATEGORY_FLAG);
                         } else if (line.startsWith(HexoConst.TAGS_PREFIX)) {

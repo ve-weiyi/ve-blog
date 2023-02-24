@@ -39,7 +39,7 @@ public class ArticleBackDTO {
     /**
      * 发表时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
     /**
      * 点赞量

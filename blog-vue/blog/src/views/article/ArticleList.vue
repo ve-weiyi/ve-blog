@@ -30,7 +30,7 @@
               <div style="margin-top:0.375rem">
                 <!-- 发表时间 -->
                 <v-icon size="20">mdi-clock-outline</v-icon>
-                {{ item.createTime | date }}
+                {{ item.createdAt | date }}
                 <!-- 文章分类 -->
                 <router-link
                   :to="'/categories/' + item.categoryId"

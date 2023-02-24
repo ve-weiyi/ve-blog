@@ -5,7 +5,7 @@ module.exports = {
     proxy: {
       "/api": {
         // localhost虽然可以连接api，但是前端无法看到响应结果
-        target: "http://localhost:8080",
+        target: "http://localhost:8088",
         changeOrigin: true,
         pathRewrite: {
           "^/api": "/api/v1"

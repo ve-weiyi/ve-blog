@@ -32,7 +32,7 @@ spring:
           type: com.zaxxer.hikari.HikariDataSource
 
         auth:
-          url: jdbc:mysql://localhost:3306/auth?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+          url: jdbc:mysql://localhost:3306/blog-auth?serverTimezone=Asia/Shanghai&allowMultiQueries=true
           username: root
           password: mysql7914
           driver-class-name: com.mysql.cj.jdbc.Driver

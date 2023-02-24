@@ -104,14 +104,14 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="createTime"
+        prop="createdAt"
         label="留言时间"
         width="140"
         align="center"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" style="margin-right:5px" />
-          {{ scope.row.createTime | date }}
+          {{ scope.row.createdAt | date }}
         </template>
       </el-table-column>
       <!-- 列操作 -->

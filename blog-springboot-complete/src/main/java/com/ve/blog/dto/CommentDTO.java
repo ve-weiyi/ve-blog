@@ -59,7 +59,7 @@ public class CommentDTO {
     /**
      * 评论时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
     /**
      * 回复量

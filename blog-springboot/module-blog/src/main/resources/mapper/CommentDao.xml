@@ -10,7 +10,7 @@
         c.user_id,
         c.id,
         c.comment_content,
-        c.create_time
+        c.created_at
         FROM
         tb_comment c
         JOIN tb_user_info u ON c.user_id = u.id
@@ -43,8 +43,8 @@
          c.id,
          c.parent_id,
          c.comment_content,
-         c.create_time,
-         row_number () over ( PARTITION BY parent_id ORDER BY create_time ASC ) row_num
+         c.created_at,
+         row_number () over ( PARTITION BY parent_id ORDER BY created_at ASC ) row_num
          FROM
          tb_comment c
          JOIN tb_user_info u ON c.user_id = u.id
@@ -92,7 +92,7 @@
         c.id,
         c.parent_id,
         c.comment_content,
-        c.create_time
+        c.created_at
         FROM
         tb_comment c
         JOIN tb_user_info u ON c.user_id = u.id
@@ -115,7 +115,7 @@
          a.article_title,
          c.comment_content,
          c.type,
-         c.create_time,
+         c.created_at,
          c.is_review
         FROM
          tb_comment c

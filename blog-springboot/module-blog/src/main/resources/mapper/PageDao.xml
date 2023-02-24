@@ -9,12 +9,12 @@
             <result property="pageName" column="page_name" jdbcType="VARCHAR"/>
             <result property="pageLabel" column="page_label" jdbcType="VARCHAR"/>
             <result property="pageCover" column="page_cover" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,page_name,page_label,
-        page_cover,create_time,update_time
+        page_cover,created_at,updated_at
     </sql>
 </mapper>

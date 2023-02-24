@@ -62,8 +62,8 @@ public class VoiceVO {
     /**
      * 创建时间
      */
-    @ApiModelProperty(name = "createTime", value = "创建时间", required = true, dataType = "Date")
-    private Date createTime;
+    @ApiModelProperty(name = "createdAt", value = "创建时间", required = true, dataType = "Date")
+    private Date createdAt;
 
     /**
      * 用户登录ip

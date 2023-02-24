@@ -39,7 +39,7 @@ public class ArticlePreviewDTO {
     /**
      * 发表时间
      */
-    private Date createTime;
+    private Date createdAt;
 
     /**
      * 文章分类id

@@ -7,7 +7,7 @@
         <result column="article_cover" property="articleCover"/>
         <result column="article_title" property="articleTitle"/>
         <result column="article_content" property="articleContent"/>
-        <result column="create_time" property="createTime"/>
+        <result column="created_at" property="createdAt"/>
         <result column="type" property="type"/>
         <result column="is_top" property="isTop"/>
         <result column="category_id" property="categoryId"/>
@@ -22,7 +22,7 @@
         <id column="id" property="id"/>
         <result column="article_cover" property="articleCover"/>
         <result column="article_title" property="articleTitle"/>
-        <result column="create_time" property="createTime"/>
+        <result column="created_at" property="createdAt"/>
         <result column="category_id" property="categoryId"/>
         <result column="category_name" property="categoryName"/>
         <collection property="tagDTOList" ofType="com.ve.blog.dto.TagDTO">
@@ -38,8 +38,8 @@
         <result column="article_content" property="articleContent"/>
         <result column="type" property="type"/>
         <result column="original_url" property="originalUrl"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
         <result column="category_id" property="categoryId"/>
         <result column="category_name" property="categoryName"/>
         <collection property="tagDTOList" ofType="com.ve.blog.dto.TagDTO">
@@ -52,7 +52,7 @@
         <id column="id" property="id"/>
         <result column="article_cover" property="articleCover"/>
         <result column="article_title" property="articleTitle"/>
-        <result column="create_time" property="createTime"/>
+        <result column="created_at" property="createdAt"/>
         <result column="type" property="type"/>
         <result column="is_top" property="isTop"/>
         <result column="is_delete" property="isDelete"/>
@@ -70,12 +70,12 @@
 	 article_cover,
 	 article_title,
      SUBSTR( article_content, 1, 500 ) AS article_content,
-	 a.create_time,
+	 a.created_at,
      a.type,
 	 a.is_top,
 	 a.category_id,
 	 category_name,
-	 t.id AS tag_id,
+	 t.id AS tagd,
 	 t.tag_name
      FROM
 	 (
@@ -86,7 +86,7 @@
 		article_content,
 	    type,
 		is_top,
-		create_time,
+		created_at,
 		category_id
 	    FROM
  		tb_article
@@ -110,7 +110,7 @@
         a.id,
         article_cover,
         article_title,
-        a.create_time,
+        a.created_at,
         a.category_id,
         category_name,
         t.id AS tag_id,
@@ -122,7 +122,7 @@
         article_cover,
         article_title,
         article_content,
-        create_time,
+        created_at,
         category_id
         FROM
         tb_article
@@ -158,8 +158,8 @@
 	 article_content,
 	 a.type,
 	 a.original_url,
-	 a.create_time,
-	 a.update_time,
+	 a.created_at,
+	 a.updated_at,
 	 a.category_id,
 	 category_name,
 	 t.id AS tag_id,
@@ -184,7 +184,7 @@
         is_top,
         a.is_delete,
         a.status,
-        a.create_time,
+        a.created_at,
         category_name,
         t.id AS tag_id,
         t.tag_name
@@ -198,7 +198,7 @@
         is_top,
         is_delete,
         status,
-        create_time,
+        created_at,
         category_id
         FROM
         tb_article
@@ -273,7 +273,7 @@
           id,
           article_title,
           article_cover,
-          create_time
+          created_at
         FROM
             (
               SELECT DISTINCT
@@ -293,7 +293,7 @@
 
     <select id="listArticleStatistics" resultType="com.ve.blog.dto.ArticleStatisticsDTO">
         SELECT
-            DATE_FORMAT( create_time, "%Y-%m-%d" ) AS date,
+            DATE_FORMAT( created_at, "%Y-%m-%d" ) AS date,
             COUNT( 1 ) AS count
         FROM
             tb_article

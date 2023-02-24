@@ -44,7 +44,7 @@ public class ArticleHomeDTO {
     /**
      * 发表时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
     /**
      * 是否置顶

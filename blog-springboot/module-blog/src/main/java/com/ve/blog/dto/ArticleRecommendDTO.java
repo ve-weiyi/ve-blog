@@ -37,6 +37,6 @@ public class ArticleRecommendDTO {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
 }

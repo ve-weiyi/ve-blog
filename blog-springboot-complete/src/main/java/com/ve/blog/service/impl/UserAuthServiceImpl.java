@@ -247,9 +247,9 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthDao, UserAuth> impl
      * @return 结果
      */
     private Boolean checkUser(UserVO user) {
-        if (!user.getCode().equals(redisService.get(RedisPrefixConst.USER_CODE_KEY + user.getUsername()))) {
-            throw new BizException("验证码错误！");
-        }
+//        if (!user.getCode().equals(redisService.get(RedisPrefixConst.USER_CODE_KEY + user.getUsername()))) {
+//            throw new BizException("验证码错误！");
+//        }
         //查询用户名是否存在
         UserAuth userAuth = userAuthDao.selectOne(new LambdaQueryWrapper<UserAuth>()
                 .select(UserAuth::getUsername)

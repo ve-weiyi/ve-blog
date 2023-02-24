@@ -20,6 +20,8 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+*.log?
 
 # 项目排除路径
 /blog-springboot-complete/target/
+/blog-springboot-complete/api_log/

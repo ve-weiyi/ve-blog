@@ -22,7 +22,7 @@
               </div>
               <!-- 发表时间 -->
               <div class="time">
-                {{ item.createTime | time }}
+                {{ item.createdAt | time }}
                 <span class="top" v-if="item.isTop == 1">
                   <i class="iconfont iconzhiding" /> 置顶
                 </span>

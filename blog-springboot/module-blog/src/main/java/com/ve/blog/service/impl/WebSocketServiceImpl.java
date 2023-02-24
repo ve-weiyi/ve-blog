@@ -161,7 +161,7 @@ public class WebSocketServiceImpl {
     private ChatRecordDTO listChartRecords(EndpointConfig endpointConfig) {
         // 获取聊天历史记录
         List<ChatRecord> chatRecordList = chatRecordDao.selectList(new LambdaQueryWrapper<ChatRecord>()
-                .ge(ChatRecord::getCreateTime, DateUtil.offsetHour(new Date(), -12)));
+                .ge(ChatRecord::getCreatedAt, DateUtil.offsetHour(new Date(), -12)));
         // 获取当前用户ip
         String ipAddress = endpointConfig.getUserProperties().get(ChatConfigurator.HEADER_NAME).toString();
         return ChatRecordDTO.builder()

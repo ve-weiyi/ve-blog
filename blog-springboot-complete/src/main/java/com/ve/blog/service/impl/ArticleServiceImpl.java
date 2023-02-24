@@ -81,7 +81,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
         Page<Article> page = new Page<>(PageUtils.getCurrent(), PageUtils.getSize());
         // 获取分页数据
         Page<Article> articlePage = articleDao.selectPage(page, new LambdaQueryWrapper<Article>()
-                .select(Article::getId, Article::getArticleTitle, Article::getCreateTime).orderByDesc(Article::getCreateTime)
+                .select(Article::getId, Article::getArticleTitle, Article::getCreatedAt).orderByDesc(Article::getCreatedAt)
                 .eq(Article::getIsDelete, CommonConst.FALSE)
                 .eq(Article::getStatus, ArticleStatusEnum.PUBLIC.getStatus()));
         List<ArchiveDTO> archiveDTOList = BeanCopyUtils.copyList(articlePage.getRecords(), ArchiveDTO.class);
@@ -139,7 +139,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
         // 查询最新文章
         CompletableFuture<List<ArticleRecommendDTO>> newestArticleList = CompletableFuture.supplyAsync(() -> {
             List<Article> articleList = articleDao.selectList(new LambdaQueryWrapper<Article>()
-                    .select(Article::getId, Article::getArticleTitle, Article::getArticleCover, Article::getCreateTime).eq(Article::getIsDelete, CommonConst.FALSE)
+                    .select(Article::getId, Article::getArticleTitle, Article::getArticleCover, Article::getCreatedAt).eq(Article::getIsDelete, CommonConst.FALSE)
                     .eq(Article::getStatus, ArticleStatusEnum.PUBLIC.getStatus()).orderByDesc(Article::getId).last("limit 5"));
             return BeanCopyUtils.copyList(articleList, ArticleRecommendDTO.class);
         });

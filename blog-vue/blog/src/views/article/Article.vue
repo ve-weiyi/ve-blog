@@ -10,18 +10,18 @@
             <!-- 发表时间 -->
             <span>
               <i class="iconfont iconrili" />
-              发表于 {{ article.createTime | date }}
+              发表于 {{ article.createdAt | date }}
             </span>
             <span class="separator">|</span>
             <!-- 发表时间 -->
             <span>
               <i class="iconfont icongengxinshijian" />
               更新于
-              <template v-if="article.updateTime">
-                {{ article.updateTime | date }}
+              <template v-if="article.updatedAt">
+                {{ article.updatedAt | date }}
               </template>
               <template v-else>
-                {{ article.createTime | date }}
+                {{ article.createdAt | date }}
               </template>
             </span>
             <span class="separator">|</span>
@@ -197,7 +197,7 @@
                   <div class="recommend-info">
                     <div class="recommend-date">
                       <i class="iconfont iconrili" />
-                      {{ item.createTime | date }}
+                      {{ item.createdAt | date }}
                     </div>
                     <div>{{ item.articleTitle }}</div>
                   </div>
@@ -243,7 +243,7 @@
                       {{ item.articleTitle }}
                     </router-link>
                   </div>
-                  <div class="content-time">{{ item.createTime | date }}</div>
+                  <div class="content-time">{{ item.createdAt | date }}</div>
                 </div>
               </div>
             </div>

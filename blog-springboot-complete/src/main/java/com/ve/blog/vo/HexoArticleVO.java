@@ -16,5 +16,5 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HexoArticleVO extends ArticleVO {
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 }

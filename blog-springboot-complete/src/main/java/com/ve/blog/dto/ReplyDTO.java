@@ -77,6 +77,6 @@ public class ReplyDTO {
     /**
      * 评论时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
 }

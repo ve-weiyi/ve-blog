@@ -46,6 +46,6 @@ public class FriendLinkBackDTO {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
 }

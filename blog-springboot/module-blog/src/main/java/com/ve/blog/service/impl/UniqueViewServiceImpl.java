@@ -52,7 +52,7 @@ public class UniqueViewServiceImpl extends ServiceImpl<UniqueViewDao, UniqueView
         Long count = redisService.sSize(UNIQUE_VISITOR);
         // 获取昨天日期插入数据
         UniqueView uniqueView = UniqueView.builder()
-                .createTime(LocalDateTimeUtil.offset(LocalDateTime.now(ZoneId.of(ZoneEnum.SHANGHAI.getZone())), -1, ChronoUnit.DAYS))
+                .createdAt(LocalDateTimeUtil.offset(LocalDateTime.now(ZoneId.of(ZoneEnum.SHANGHAI.getZone())), -1, ChronoUnit.DAYS))
                 .viewsCount(Optional.of(count.intValue()).orElse(0))
                 .build();
         uniqueViewDao.insert(uniqueView);

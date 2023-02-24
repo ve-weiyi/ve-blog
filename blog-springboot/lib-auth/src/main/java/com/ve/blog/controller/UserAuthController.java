@@ -67,7 +67,7 @@ public class UserAuthController {
     @ApiOperationSupport(order = 3)
     @ApiOperation(value = "登录")
     @PostMapping("/users/login")
-    public Result<?> login(@Valid UserVO user) {
+    public Result<?> login(@Valid @RequestBody UserVO user) {
         return Result.ok(userAuthService.login(user));
     }
 
