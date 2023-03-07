@@ -26,7 +26,7 @@ import dayjs from "dayjs";
 import tagCloud from "./components/tag-cloud";
 
 //携带cookie
-axios.defaults.withCredentials=true;
+axios.defaults.withCredentials = true;
 
 Vue.prototype.config = config;
 Vue.use(mavonEditor);
@@ -69,6 +69,23 @@ router.afterEach(() => {
   NProgress.done();
 });
 
+// 请求拦截器，为了加上token
+axios.interceptors.request.use(
+  function(config) {
+    console.log(config.url);
+    if (window.sessionStorage.getItem("tokenStr")) {
+      //请求携带自定义token
+      config.headers["Authorization"] = window.sessionStorage.getItem(
+        "tokenStr"
+      );
+    }
+    return config;
+  },
+  function(error) {
+    console.log(error);
+    return error;
+  }
+);
 // 响应拦截器
 axios.interceptors.response.use(
   function(response) {
