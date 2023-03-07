@@ -93,7 +93,8 @@ export default {
 
           let params = {
             username: that.loginForm.username,
-            password: that.loginForm.password
+            password: that.loginForm.password,
+            code: "123456"
           };
           that.axios.post("/api/users/login", params).then(({ data }) => {
             if (data.flag) {
@@ -101,6 +102,7 @@ export default {
               that.$store.commit("login", data.data.userInfoDTO);
               // 加载用户菜单
               generaMenu();
+              window.sessionStorage.setItem("tokenStr", data.data.accessToken);
               that.$message.success("登录成功");
               that.$router.push({ path: "/" });
             } else {
