@@ -17,8 +17,9 @@ module.exports = {
         logLevel: "debug" // 打印代理以后的地址
       }
     },
-    disableHostCheck: true
+    // disableHostCheck: true
   },
+  lintOnSave: false,
   publicPath: "/admin",
   outputDir: "admin",
   assetsDir: "static",
