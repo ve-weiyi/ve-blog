@@ -129,7 +129,20 @@ blog-springboot
 
 
 
+运行步骤：
+1.确保安装了mysql
+2.确保安装了redis
+3.确保安装了rabbitmq
+4.mysql中创建blog、blog-auth数据库并运行 [blog-ve77.cn.sql](blog-ve77.cn.sql)blog-ve77.cn.sql 文件。
+两个数据库内容一样，如只使用一个数据库，则需要修改[application-dev.yml](blog-springboot-complete%2Fsrc%2Fmain%2Fresources%2Fconfig%2Fapplication-dev.yml)文件配置，主库和从库都使用blog数据库
 
-
-
-
+5.运行BlogComApplication
+6.在admin目录下，
+安装前端库依赖
+```shell
+$ pnpm install
+```
+运行项目
+```shell
+$ pnpm run serve
+```
