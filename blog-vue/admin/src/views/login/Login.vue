@@ -96,13 +96,13 @@ export default {
             password: that.loginForm.password,
             code: "123456"
           };
-          that.axios.post("/api/users/login", params).then(({ data }) => {
+          that.axios.post("/api/login", params).then(({ data }) => {
             if (data.flag) {
               // 登录后保存用户信息
-              that.$store.commit("login", data.data.userInfoDTO);
+              that.$store.commit("login", data.data.user_info);
               // 加载用户菜单
               generaMenu();
-              window.sessionStorage.setItem("tokenStr", data.data.accessToken);
+              window.sessionStorage.setItem("tokenStr", data.data.token);
               that.$message.success("登录成功");
               that.$router.push({ path: "/" });
             } else {

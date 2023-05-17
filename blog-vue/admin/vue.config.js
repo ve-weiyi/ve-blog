@@ -8,7 +8,7 @@ module.exports = {
         ws: false,
         //  目标地址
         // target: "https://ve77.cn:8088",
-        target: "http://127.0.0.1:8088",
+        target: "http://127.0.0.1:9999",
         changeOrigin: true,
         //  重写请求地址，不携带cookie了
         pathRewrite: {
