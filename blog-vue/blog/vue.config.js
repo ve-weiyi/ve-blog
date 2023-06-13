@@ -8,7 +8,7 @@ module.exports = {
         target: "http://localhost:8088",
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "/api/v1"
+          "^/api": "/api/"
         },
         logLevel: "debug" // 打印代理以后的地址
       }

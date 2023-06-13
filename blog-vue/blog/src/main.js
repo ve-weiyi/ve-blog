@@ -96,36 +96,36 @@ router.afterEach(() => {
 
 // 请求拦截器，为了加上token
 axios.interceptors.request.use(
-    function(config) {
-      console.log(config.url);
-      if (window.sessionStorage.getItem("tokenStr")) {
-        //请求携带自定义token
-        config.headers["Authorization"] = window.sessionStorage.getItem(
-            "tokenStr"
-        );
-      }
-      return config;
-    },
-    function(error) {
-      console.log(error);
-      return error;
+  function(config) {
+    console.log(config.url);
+    if (window.sessionStorage.getItem("tokenStr")) {
+      //请求携带自定义token
+      config.headers["Authorization"] = window.sessionStorage.getItem(
+        "tokenStr"
+      );
     }
+    return config;
+  },
+  function(error) {
+    console.log(error);
+    return error;
+  }
 );
 
 //响应拦截器
 axios.interceptors.response.use(
-    //业务逻辑错误，200是返回成功
-    function(response) {
-      //状态码是自己定的
-      switch (response.data.code) {
-        case 50000:
-          Vue.prototype.$toast({ type: "error", message: "系统异常" });
-      }
-      return response;
-    },
-    function(error) {
-      return Promise.reject(error);
+  //业务逻辑错误，200是返回成功
+  function(response) {
+    //状态码是自己定的
+    switch (response.data.code) {
+      case 50000:
+        Vue.prototype.$toast({ type: "error", message: "系统异常" });
     }
+    return response;
+  },
+  function(error) {
+    return Promise.reject(error);
+  }
 );
 
 new Vue({
