@@ -406,7 +406,7 @@ export default {
           }
           if (lang && hljs.getLanguage(lang)) {
             // highlight.js 高亮代码
-            const preCode = hljs.highlight(lang, str, true).value;
+            const preCode = hljs.highlightAuto(lang, str).value;
             html = html + preCode;
             if (linesLength) {
               html += '<b class="name">' + lang + "</b>";

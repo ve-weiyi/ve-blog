@@ -23,7 +23,21 @@ export default new Vuex.Store({
     articleLikeSet: [],
     commentLikeSet: [],
     talkLikeSet: [],
-    blogInfo: {}
+    blogInfo: {
+      websiteConfig: {
+        websiteCreateTime: "2022",
+        websiteAuthor: "与梦",
+        websiteRecordNo: "桂ICP备2022000185号-1",
+        socialUrlList: [],
+        isMusicPlayer: 1,
+      },
+      pageList: [
+        {
+          pageLabel: "home",
+          pageCover: "../../assets/images/qinglong.jpg"
+        }
+      ]
+    }
   },
   mutations: {
     login(state, user) {

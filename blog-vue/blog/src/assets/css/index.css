@@ -9,7 +9,7 @@ a, button, img {
   cursor: url(https://static.talkxj.com/css/pointer.cur),default;
 }
 ul{
-  padding:0 !important; 
+  padding:0 !important;
 }
 * {
   font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Lato,Roboto,'PingFang SC','Microsoft YaHei',sans-serif !important;
@@ -164,6 +164,7 @@ p {
     padding: 0 0.5rem;
     width: 100%;
     font-size: 2.5rem;
+    font-size: 2.5rem;
     text-align: center;
     color: #eee;
   }
@@ -231,7 +232,7 @@ p {
     border-radius: 4px;
     height: 100vh;
     width: 100vw;
-    
+
   }
   .login-wrapper {
     padding: 18vh 0.5em 0 0.5rem;
@@ -474,7 +475,7 @@ pre.hljs code {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   overflow: hidden;
 }
 .pan{
@@ -483,5 +484,5 @@ pre.hljs code {
   padding: 13px;
 }
 #nprogress .bar {
-  background:#49b1f5 !important; 
+  background:#49b1f5 !important;
 }

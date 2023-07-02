@@ -11,7 +11,7 @@ import vuetify from "./plugins/vuetify";
 //引入css
 import animated from "animate.css";
 import "./assets/css/index.css";
-import "./assets/css/iconfont.css";
+import "./assets/css/iconfont/iconfont.css";
 import "./assets/css/markdown.css";
 import "./assets/css/vue-social-share/client.css";
 
